@@ -1,11 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elegant Fashion - Zamonaviy Moda</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="additional-styles.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/additional-styles.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -25,7 +26,7 @@
                         <a href="products.html" class="nav-link">Mahsulotlar</a>
                     </li>
                     <li class="nav-item">
-                        <a href="about.html" class="nav-link">Biz haqimizda</a>
+                        <a href="{% url 'about' %}" class="nav-link">Biz haqimizda</a>
                     </li>
                     <li class="nav-item">
                         <a href="contact.html" class="nav-link">Aloqa</a>
