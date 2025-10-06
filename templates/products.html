@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahsulotlar - Elegant Fashion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="additional-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><h2>Elegant Fashion</h2></a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Bosh sahifa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="products.html" class="nav-link active">Mahsulotlar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">Biz haqimizda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Aloqa</a>
+                    </li>
+                </ul>
+                <div class="nav-icons">
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-user"></i>
+                    <a href="cart.html" class="cart-link">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1>Barcha Mahsulotlar</h1>
+                <p>Eng yangi va sifatli kiyimlarimizni kashf eting</p>
+                <nav class="breadcrumb">
+                    <a href="index.html">Bosh sahifa</a>
+                    <span>/</span>
+                    <span>Mahsulotlar</span>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filters">
+                <div class="filter-group">
+                    <label>Kategoriya:</label>
+                    <select id="categoryFilter">
+                        <option value="">Barchasi</option>
+                        <option value="women">Ayollar kiyimi</option>
+                        <option value="men">Erkaklar kiyimi</option>
+                        <option value="accessories">Aksessuarlar</option>
+                        <option value="shoes">Poyabzal</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Narx oralig'i:</label>
+                    <select id="priceFilter">
+                        <option value="">Barchasi</option>
+                        <option value="0-100">$0 - $100</option>
+                        <option value="100-300">$100 - $300</option>
+                        <option value="300-500">$300 - $500</option>
+                        <option value="500+">$500+</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Saralash:</label>
+                    <select id="sortFilter">
+                        <option value="">Standart</option>
+                        <option value="price-low">Narx: Pastdan yuqoriga</option>
+                        <option value="price-high">Narx: Yuqoridan pastga</option>
+                        <option value="name">Nomi bo'yicha</option>
+                        <option value="newest">Eng yangi</option>
+                    </select>
+                </div>
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="grid"><i class="fas fa-th"></i></button>
+                    <button class="view-btn" data-view="list"><i class="fas fa-list"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-page">
+        <div class="container">
+            <div class="products-grid" id="productsGrid">
+                <!-- Product 1 -->
+                <div class="product-card" data-category="women" data-price="259">
+                    <div class="product-image">
+                        <div class="placeholder-product product1"></div>
+                        <div class="product-badge">Yangi</div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                            <a href="product-detail.html?id=1" class="action-btn"><i class="fas fa-eye"></i></a>
+                            <button class="action-btn add-to-cart" data-id="1"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h4>Elegant Dress</h4>
+                        <p class="product-category">Ayollar kiyimi</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(24 baho)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$259</span>
+                            <span class="old-price">$329</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card" data-category="men" data-price="499">
+                    <div class="product-image">
+                        <div class="placeholder-product product2"></div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                            <a href="product-detail.html?id=2" class="action-btn"><i class="fas fa-eye"></i></a>
+                            <button class="action-btn add-to-cart" data-id="2"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h4>Classic Suit</h4>
+                        <p class="product-category">Erkaklar kiyimi</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(18 baho)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$499</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card" data-category="women" data-price="149">
+                    <div class="product-image">
+                        <div class="placeholder-product product3"></div>
+                        <div class="product-badge sale">Chegirma</div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                            <a href="product-detail.html?id=3" class="action-btn"><i class="fas fa-eye"></i></a>
+                            <button class="action-btn add-to-cart" data-id="3"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h4>Casual Wear</h4>
+                        <p class="product-category">Ayollar kiyimi</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(31 baho)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$149</span>
+                            <span class="old-price">$199</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card" data-category="accessories" data-price="89">
+                    <div class="product-image">
+                        <div class="placeholder-product product4"></div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                            <a href="product-detail.html?id=4" class="action-btn"><i class="fas fa-eye"></i></a>
+                            <button class="action-btn add-to-cart" data-id="4"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h4>Designer Bag</h4>
+                        <p class="product-category">Aksessuarlar</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(45 baho)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$89</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card" data-category="shoes" data-price="199">
+                    <div class="product-image">
+                        <div class="placeholder-product product5"></div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                            <a href="product-detail.html?id=5" class="action-btn"><i class="fas fa-eye"></i></a>
+                            <button class="action-btn add-to-cart" data-id="5"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h4>Sport Shoes</h4>
+                        <p class="product-category">Poyabzal</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(12 baho)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$199</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card" data-category="men" data-price="79">
+                    <div class="product-image">
+                        <div class="placeholder-product product6"></div>
+                        <div class="product-badge sale">-30%</div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                            <a href="product-detail.html?id=6" class="action-btn"><i class="fas fa-eye"></i></a>
+                            <button class="action-btn add-to-cart" data-id="6"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h4>Casual T-Shirt</h4>
+                        <p class="product-category">Erkaklar kiyimi</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(67 baho)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$79</span>
+                            <span class="old-price">$99</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card" data-category="women" data-price="320">
+                    <div class="product-image">
+                        <div class="placeholder-product product7"></div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                            <a href="product-detail.html?id=7" class="action-btn"><i class="fas fa-eye"></i></a>
+                            <button class="action-btn add-to-cart" data-id="7"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h4>Evening Dress</h4>
+                        <p class="product-category">Ayollar kiyimi</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(39 baho)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$320</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card" data-category="accessories" data-price="45">
+                    <div class="product-image">
+                        <div class="placeholder-product product8"></div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                            <a href="product-detail.html?id=8" class="action-btn"><i class="fas fa-eye"></i></a>
+                            <button class="action-btn add-to-cart" data-id="8"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h4>Luxury Watch</h4>
+                        <p class="product-category">Aksessuarlar</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(28 baho)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$45</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="page-btn prev" disabled><i class="fas fa-chevron-left"></i></button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Elegant Fashion</h3>
+                    <p>Zamonaviy moda dunyosidagi eng yaxshi tanlov. Sifat va uslub birligi.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Tezkor Havolalar</h4>
+                    <ul>
+                        <li><a href="index.html">Bosh sahifa</a></li>
+                        <li><a href="products.html">Mahsulotlar</a></li>
+                        <li><a href="about.html">Biz haqimizda</a></li>
+                        <li><a href="contact.html">Aloqa</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Kategoriyalar</h4>
+                    <ul>
+                        <li><a href="products.html?category=women">Ayollar kiyimi</a></li>
+                        <li><a href="products.html?category=men">Erkaklar kiyimi</a></li>
+                        <li><a href="products.html?category=accessories">Aksessuarlar</a></li>
+                        <li><a href="products.html?category=shoes">Poyabzallar</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Aloqa Ma'lumotlari</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Tashkent, O'zbekiston</p>
+                        <p><i class="fas fa-phone"></i> +998 90 123 45 67</p>
+                        <p><i class="fas fa-envelope"></i> info@elegantfashion.uz</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Elegant Fashion. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="products.js"></script>
+</body>
+</html>

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahsulot Tafsilotlari - Elegant Fashion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="additional-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><h2>Elegant Fashion</h2></a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Bosh sahifa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="products.html" class="nav-link">Mahsulotlar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">Biz haqimizda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Aloqa</a>
+                    </li>
+                </ul>
+                <div class="nav-icons">
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-user"></i>
+                    <a href="cart.html" class="cart-link">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb-section">
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="index.html">Bosh sahifa</a>
+                <span>/</span>
+                <a href="products.html">Mahsulotlar</a>
+                <span>/</span>
+                <span id="productName">Elegant Dress</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Product Detail -->
+    <section class="product-detail">
+        <div class="container">
+            <div class="product-detail-content">
+                <!-- Product Images -->
+                <div class="product-images">
+                    <div class="main-image">
+                        <div class="image-placeholder main-product-img product1"></div>
+                        <div class="image-badges">
+                            <span class="badge new">Yangi</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-images">
+                        <div class="thumbnail active">
+                            <div class="image-placeholder product1"></div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="image-placeholder product1-alt1"></div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="image-placeholder product1-alt2"></div>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="image-placeholder product1-alt3"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="product-info">
+                    <h1 class="product-title">Elegant Dress</h1>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <span class="rating-text">(24 baho)</span>
+                        <a href="#reviews" class="reviews-link">Barcha baholarni ko'rish</a>
+                    </div>
+                    
+                    <div class="product-price">
+                        <span class="current-price">$259</span>
+                        <span class="old-price">$329</span>
+                        <span class="discount">-21%</span>
+                    </div>
+
+                    <div class="product-description">
+                        <p>Bu nafis dress zamonaviy ayollar uchun mo'ljallangan bo'lib, yuqori sifatli materiallardan tayyorlangan. Klassik va zamonaviy uslublarning mukammal uyg'unligi.</p>
+                    </div>
+
+                    <!-- Product Options -->
+                    <div class="product-options">
+                        <div class="option-group">
+                            <label>Rang:</label>
+                            <div class="color-options">
+                                <div class="color-option active" data-color="blue" style="background: #667eea;"></div>
+                                <div class="color-option" data-color="red" style="background: #ff6b6b;"></div>
+                                <div class="color-option" data-color="green" style="background: #4ecdc4;"></div>
+                                <div class="color-option" data-color="black" style="background: #333;"></div>
+                            </div>
+                        </div>
+
+                        <div class="option-group">
+                            <label>O'lcham:</label>
+                            <div class="size-options">
+                                <button class="size-option" data-size="xs">XS</button>
+                                <button class="size-option" data-size="s">S</button>
+                                <button class="size-option active" data-size="m">M</button>
+                                <button class="size-option" data-size="l">L</button>
+                                <button class="size-option" data-size="xl">XL</button>
+                            </div>
+                            <a href="#" class="size-guide">O'lchamlar jadvali</a>
+                        </div>
+
+                        <div class="option-group">
+                            <label>Miqdor:</label>
+                            <div class="quantity-control">
+                                <button class="qty-btn minus">-</button>
+                                <input type="number" value="1" min="1" class="quantity-input">
+                                <button class="qty-btn plus">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i>
+                            Savatga Qo'shish
+                        </button>
+                        <button class="wishlist-btn">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="share-btn">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                    </div>
+
+                    <!-- Product Features -->
+                    <div class="product-features">
+                        <div class="feature">
+                            <i class="fas fa-truck"></i>
+                            <span>Tez yetkazib berish</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-undo"></i>
+                            <span>14 kun qaytarish</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>1 yil kafolat</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-award"></i>
+                            <span>Premium sifat</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Details Tabs -->
+    <section class="product-tabs">
+        <div class="container">
+            <div class="tabs-header">
+                <button class="tab-btn active" data-tab="description">Tavsif</button>
+                <button class="tab-btn" data-tab="specifications">Xususiyatlari</button>
+                <button class="tab-btn" data-tab="reviews">Baholar</button>
+                <button class="tab-btn" data-tab="shipping">Yetkazib berish</button>
+            </div>
+
+            <div class="tabs-content">
+                <div class="tab-pane active" id="description">
+                    <h3>Mahsulot Tavsifi</h3>
+                    <p>Bu Elegant Dress zamonaviy ayollar uchun yaratilgan bo'lib, eng yuqori sifatli materiallardan ishlab chiqarilgan. Uning noyob dizayni va mukammal qilib tikilishi sizga har qanday tadbirda ajralib turishga imkon beradi.</p>
+                    
+                    <h4>Asosiy Xususiyatlari:</h4>
+                    <ul>
+                        <li>100% Premium paxta materialdan ishlab chiqarilgan</li>
+                        <li>Zamonaviy va klassik dizayn uyg'unligi</li>
+                        <li>Har qanday fasl uchun mos</li>
+                        <li>Professional yuvish va tozalash imkoniyati</li>
+                        <li>Allergiya keltirib chiqarmaydi</li>
+                        <li>Niqobsiz va nafis ko'rinish</li>
+                    </ul>
+
+                    <h4>Foydalanish Maslahatlari:</h4>
+                    <p>Mahsulotni uzoq muddat ishlatish uchun 30°C da yuvish, to'g'ridan-to'g'ri quyosh nuridan saqlash va dazmol bilan ehtiyotkorlik bilan foydalanish tavsiya etiladi.</p>
+                </div>
+
+                <div class="tab-pane" id="specifications">
+                    <h3>Texnik Xususiyatlari</h3>
+                    <table class="specs-table">
+                        <tr>
+                            <td>Material</td>
+                            <td>100% Premium Paxta</td>
+                        </tr>
+                        <tr>
+                            <td>Rang</td>
+                            <td>Ko'k, Qizil, Yashil, Qora</td>
+                        </tr>
+                        <tr>
+                            <td>O'lchamlar</td>
+                            <td>XS, S, M, L, XL</td>
+                        </tr>
+                        <tr>
+                            <td>Uzunlik</td>
+                            <td>95 sm (M o'lcham uchun)</td>
+                        </tr>
+                        <tr>
+                            <td>Yuvish</td>
+                            <td>30°C, mashina yuvish mumkin</td>
+                        </tr>
+                        <tr>
+                            <td>Ishlab chiqarilgan</td>
+                            <td>Turkiya</td>
+                        </tr>
+                        <tr>
+                            <td>Artikul</td>
+                            <td>EF-DR-001</td>
+                        </tr>
+                        <tr>
+                            <td>Kafolat</td>
+                            <td>1 yil</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="tab-pane" id="reviews">
+                    <div class="reviews-section">
+                        <div class="reviews-summary">
+                            <div class="rating-overview">
+                                <div class="overall-rating">
+                                    <span class="rating-number">4.2</span>
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <span class="total-reviews">24 baho asosida</span>
+                                </div>
+                                <div class="rating-breakdown">
+                                    <div class="rating-bar">
+                                        <span>5 yulduz</span>
+                                        <div class="bar"><div class="fill" style="width: 60%"></div></div>
+                                        <span>12</span>
+                                    </div>
+                                    <div class="rating-bar">
+                                        <span>4 yulduz</span>
+                                        <div class="bar"><div class="fill" style="width: 30%"></div></div>
+                                        <span>8</span>
+                                    </div>
+                                    <div class="rating-bar">
+                                        <span>3 yulduz</span>
+                                        <div class="bar"><div class="fill" style="width: 8%"></div></div>
+                                        <span>2</span>
+                                    </div>
+                                    <div class="rating-bar">
+                                        <span>2 yulduz</span>
+                                        <div class="bar"><div class="fill" style="width: 4%"></div></div>
+                                        <span>1</span>
+                                    </div>
+                                    <div class="rating-bar">
+                                        <span>1 yulduz</span>
+                                        <div class="bar"><div class="fill" style="width: 4%"></div></div>
+                                        <span>1</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="reviews-list">
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <div class="reviewer-avatar">A</div>
+                                        <div class="reviewer-details">
+                                            <h4>Aziza M.</h4>
+                                            <span class="review-date">15 Oktyabr 2025</span>
+                                        </div>
+                                    </div>
+                                    <div class="review-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="review-content">
+                                    <p>Juda chiroyli va sifatli mahsulot! Material va tikuv juda yaxshi. Tavsiya qilaman!</p>
+                                </div>
+                            </div>
+
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <div class="reviewer-avatar">M</div>
+                                        <div class="reviewer-details">
+                                            <h4>Malika S.</h4>
+                                            <span class="review-date">12 Oktyabr 2025</span>
+                                        </div>
+                                    </div>
+                                    <div class="review-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="review-content">
+                                    <p>O'lchami to'g'ri keldi, material yaxshi. Faqat rang biroz boshqacha edi.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="load-more-reviews">Ko'proq ko'rish</button>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="shipping">
+                    <h3>Yetkazib Berish Ma'lumotlari</h3>
+                    
+                    <div class="shipping-options">
+                        <div class="shipping-option">
+                            <div class="shipping-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div class="shipping-details">
+                                <h4>Standart Yetkazib Berish</h4>
+                                <p>3-5 ish kuni • Bepul (50$ dan yuqori buyurtmalar uchun)</p>
+                                <span class="shipping-price">$5</span>
+                            </div>
+                        </div>
+
+                        <div class="shipping-option">
+                            <div class="shipping-icon">
+                                <i class="fas fa-shipping-fast"></i>
+                            </div>
+                            <div class="shipping-details">
+                                <h4>Tez Yetkazib Berish</h4>
+                                <p>1-2 ish kuni • Har qanday buyurtma uchun</p>
+                                <span class="shipping-price">$15</span>
+                            </div>
+                        </div>
+
+                        <div class="shipping-option">
+                            <div class="shipping-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <div class="shipping-details">
+                                <h4>Do'kondan Olish</h4>
+                                <p>24 soat ichida tayyor • Bepul</p>
+                                <span class="shipping-price">Bepul</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="return-policy">
+                        <h4>Qaytarish Shartlari</h4>
+                        <ul>
+                            <li>Mahsulotni 14 kun ichida qaytarishingiz mumkin</li>
+                            <li>Mahsulot asl holatida bo'lishi kerak</li>
+                            <li>Qaytarish uchun kvitansiya talab qilinadi</li>
+                            <li>Qaytarish xarajatlari mijoz zimmasiga</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="related-products">
+        <div class="container">
+            <div class="section-header">
+                <h2>O'xshash Mahsulotlar</h2>
+                <p>Sizga yoqishi mumkin bo'lgan boshqa mahsulotlar</p>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="placeholder-product product2"></div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                            <a href="product-detail.html?id=2" class="action-btn"><i class="fas fa-eye"></i></a>
+                            <button class="action-btn add-to-cart" data-id="2"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h4>Classic Suit</h4>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$499</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="placeholder-product product3"></div>
+                        <div class="product-badge sale">Chegirma</div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                            <a href="product-detail.html?id=3" class="action-btn"><i class="fas fa-eye"></i></a>
+                            <button class="action-btn add-to-cart" data-id="3"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h4>Casual Wear</h4>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$149</span>
+                            <span class="old-price">$199</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="placeholder-product product4"></div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                            <a href="product-detail.html?id=4" class="action-btn"><i class="fas fa-eye"></i></a>
+                            <button class="action-btn add-to-cart" data-id="4"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h4>Designer Bag</h4>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$89</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="placeholder-product product5"></div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                            <a href="product-detail.html?id=5" class="action-btn"><i class="fas fa-eye"></i></a>
+                            <button class="action-btn add-to-cart" data-id="5"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h4>Sport Shoes</h4>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$199</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Elegant Fashion</h3>
+                    <p>Zamonaviy moda dunyosidagi eng yaxshi tanlov. Sifat va uslub birligi.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Tezkor Havolalar</h4>
+                    <ul>
+                        <li><a href="index.html">Bosh sahifa</a></li>
+                        <li><a href="products.html">Mahsulotlar</a></li>
+                        <li><a href="about.html">Biz haqimizda</a></li>
+                        <li><a href="contact.html">Aloqa</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Kategoriyalar</h4>
+                    <ul>
+                        <li><a href="products.html?category=women">Ayollar kiyimi</a></li>
+                        <li><a href="products.html?category=men">Erkaklar kiyimi</a></li>
+                        <li><a href="products.html?category=accessories">Aksessuarlar</a></li>
+                        <li><a href="products.html?category=shoes">Poyabzallar</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Aloqa Ma'lumotlari</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Tashkent, O'zbekiston</p>
+                        <p><i class="fas fa-phone"></i> +998 90 123 45 67</p>
+                        <p><i class="fas fa-envelope"></i> info@elegantfashion.uz</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Elegant Fashion. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="product-detail.js"></script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aloqa - Elegant Fashion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="additional-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><h2>Elegant Fashion</h2></a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Bosh sahifa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="products.html" class="nav-link">Mahsulotlar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">Biz haqimizda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link active">Aloqa</a>
+                    </li>
+                </ul>
+                <div class="nav-icons">
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-user"></i>
+                    <a href="cart.html" class="cart-link">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1>Biz Bilan Aloqa</h1>
+                <p>Savollaringiz bormi? Biz sizga yordam berishga tayyormiz</p>
+                <nav class="breadcrumb">
+                    <a href="index.html">Bosh sahifa</a>
+                    <span>/</span>
+                    <span>Aloqa</span>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info Section -->
+    <section class="contact-info-section">
+        <div class="container">
+            <div class="contact-info-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Bizning Manzilimiz</h3>
+                    <p>Amir Temur ko'chasi, 15-uy<br>
+                    Yunusobod tumani, Toshkent<br>
+                    O'zbekiston, 100084</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Telefon Raqamlarimiz</h3>
+                    <p>Asosiy: +998 71 123 45 67<br>
+                    Mobil: +998 90 123 45 67<br>
+                    WhatsApp: +998 99 123 45 67</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Manzillarimiz</h3>
+                    <p>Umumiy: info@elegantfashion.uz<br>
+                    Savdo: sales@elegantfashion.uz<br>
+                    Yordam: support@elegantfashion.uz</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Ish Vaqti</h3>
+                    <p>Dushanba - Juma: 09:00 - 19:00<br>
+                    Shanba: 10:00 - 18:00<br>
+                    Yakshanba: 11:00 - 16:00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="contact-form-content">
+                <div class="form-text">
+                    <h2>Xabar Yuboring</h2>
+                    <p>Sizning fikr va takliflaringiz biz uchun muhim. Quyidagi forma orqali biz bilan bog'laning va biz tez orada sizga javob beramiz.</p>
+                    <div class="form-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>24 soat ichida javob</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Professional yordam</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Bepul maslahat</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">To'liq Ism <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Manzil <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefon Raqam</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Mavzu <span class="required">*</span></label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Mavzuni tanlang</option>
+                                <option value="general">Umumiy savol</option>
+                                <option value="order">Buyurtma haqida</option>
+                                <option value="complaint">Shikoyat</option>
+                                <option value="suggestion">Taklif</option>
+                                <option value="partnership">Hamkorlik</option>
+                                <option value="other">Boshqa</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Xabar <span class="required">*</span></label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Xabaringizni yozing..."></textarea>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="newsletter" name="newsletter">
+                                <span class="checkmark"></span>
+                                Yangiliklar va takliflar haqida xabar olishni xohlayman
+                            </label>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Xabar Yuborish
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Bizni Topish</h2>
+                <p>Toshkent shahridagi asosiy do'konimizning joylashuvi</p>
+            </div>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Interaktiv Xarita</h3>
+                    <p>Google Maps orqali bizning aniq manzilimizni topishingiz mumkin</p>
+                    <a href="https://maps.google.com" target="_blank" class="map-btn">
+                        <i class="fas fa-external-link-alt"></i>
+                        Google Maps'da Ochish
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Tez-tez So'raladigan Savollar</h2>
+                <p>Eng ko'p so'raladigan savollarga javoblar</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Buyurtma qanday berish mumkin?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Buyurtma berish uchun saytimizdan kerakli mahsulotni tanlang va "Savatga qo'shish" tugmasini bosing. Keyin savatga o'tib, buyurtmangizni tasdiqlang.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Yetkazib berish qancha vaqt oladi?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Toshkent shahri bo'ylab yetkazib berish 1-2 ish kuni, viloyatlarga esa 3-5 ish kuni davomida amalga oshiriladi.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>To'lov usullari qanday?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Siz naqd pul, bank kartalari, Payme, Click yoki Click Up orqali to'lov qilishingiz mumkin.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Mahsulotni qaytarish mumkinmi?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ha, xarid qilgan kundan boshlab 14 kun ichida mahsulotni qaytarishingiz yoki almashtirishingiz mumkin.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>O'lchamni qanday tanlash kerak?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Har bir mahsulot sahifasida o'lchamlar jadvali mavjud. Agar shubhangiz bo'lsa, bizga qo'ng'iroq qiling.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="social-section">
+        <div class="container">
+            <div class="social-content">
+                <h2>Ijtimoiy Tarmoqlarda Kuzatib Boring</h2>
+                <p>Eng so'nggi yangiliklar va takliflardan xabardor bo'ling</p>
+                <div class="social-grid">
+                    <a href="#" class="social-card facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        <div class="social-info">
+                            <h4>Facebook</h4>
+                            <p>15,000+ Followers</p>
+                        </div>
+                    </a>
+                    <a href="#" class="social-card instagram">
+                        <i class="fab fa-instagram"></i>
+                        <div class="social-info">
+                            <h4>Instagram</h4>
+                            <p>25,000+ Followers</p>
+                        </div>
+                    </a>
+                    <a href="#" class="social-card telegram">
+                        <i class="fab fa-telegram"></i>
+                        <div class="social-info">
+                            <h4>Telegram</h4>
+                            <p>8,000+ Subscribers</p>
+                        </div>
+                    </a>
+                    <a href="#" class="social-card youtube">
+                        <i class="fab fa-youtube"></i>
+                        <div class="social-info">
+                            <h4>YouTube</h4>
+                            <p>5,000+ Subscribers</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Elegant Fashion</h3>
+                    <p>Zamonaviy moda dunyosidagi eng yaxshi tanlov. Sifat va uslub birligi.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Tezkor Havolalar</h4>
+                    <ul>
+                        <li><a href="index.html">Bosh sahifa</a></li>
+                        <li><a href="products.html">Mahsulotlar</a></li>
+                        <li><a href="about.html">Biz haqimizda</a></li>
+                        <li><a href="contact.html">Aloqa</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Kategoriyalar</h4>
+                    <ul>
+                        <li><a href="products.html?category=women">Ayollar kiyimi</a></li>
+                        <li><a href="products.html?category=men">Erkaklar kiyimi</a></li>
+                        <li><a href="products.html?category=accessories">Aksessuarlar</a></li>
+                        <li><a href="products.html?category=shoes">Poyabzallar</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Aloqa Ma'lumotlari</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Tashkent, O'zbekiston</p>
+                        <p><i class="fas fa-phone"></i> +998 90 123 45 67</p>
+                        <p><i class="fas fa-envelope"></i> info@elegantfashion.uz</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Elegant Fashion. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="contact.js"></script>
+</body>
+</html>

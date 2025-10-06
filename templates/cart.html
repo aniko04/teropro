@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savatcha - Elegant Fashion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="additional-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html"><h2>Elegant Fashion</h2></a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Bosh sahifa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="products.html" class="nav-link">Mahsulotlar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">Biz haqimizda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Aloqa</a>
+                    </li>
+                </ul>
+                <div class="nav-icons">
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-user"></i>
+                    <a href="cart.html" class="cart-link">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count">2</span>
+                    </a>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1>Xaridlar Savati</h1>
+                <p>Tanlaganlar mahsulotlaringizni ko'rib chiqing va buyurtma bering</p>
+                <nav class="breadcrumb">
+                    <a href="index.html">Bosh sahifa</a>
+                    <span>/</span>
+                    <span>Savatcha</span>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Content -->
+    <section class="cart-section">
+        <div class="container">
+            <div class="cart-content">
+                <!-- Cart Items -->
+                <div class="cart-items">
+                    <div class="cart-header">
+                        <h2>Sizning Mahsulotlaringiz <span id="cartItemCount">(2 ta)</span></h2>
+                        <button class="clear-cart-btn">
+                            <i class="fas fa-trash"></i>
+                            Barchasini O'chirish
+                        </button>
+                    </div>
+
+                    <div class="cart-items-list" id="cartItemsList">
+                        <!-- Cart Item 1 -->
+                        <div class="cart-item" data-id="1">
+                            <div class="item-image">
+                                <div class="placeholder-product product1"></div>
+                            </div>
+                            <div class="item-details">
+                                <h3 class="item-name">Elegant Dress</h3>
+                                <p class="item-category">Ayollar kiyimi</p>
+                                <div class="item-options">
+                                    <span>Rang: Ko'k</span>
+                                    <span>O'lcham: M</span>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="action-link wishlist">
+                                        <i class="fas fa-heart"></i>
+                                        Sevimlilar
+                                    </button>
+                                    <button class="action-link remove" data-id="1">
+                                        <i class="fas fa-trash"></i>
+                                        O'chirish
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="item-quantity">
+                                <label>Miqdor:</label>
+                                <div class="quantity-control">
+                                    <button class="qty-btn minus" data-id="1">-</button>
+                                    <input type="number" value="1" min="1" class="quantity-input" data-id="1">
+                                    <button class="qty-btn plus" data-id="1">+</button>
+                                </div>
+                            </div>
+                            <div class="item-price">
+                                <span class="current-price">$259</span>
+                                <span class="old-price">$329</span>
+                            </div>
+                        </div>
+
+                        <!-- Cart Item 2 -->
+                        <div class="cart-item" data-id="2">
+                            <div class="item-image">
+                                <div class="placeholder-product product4"></div>
+                            </div>
+                            <div class="item-details">
+                                <h3 class="item-name">Designer Bag</h3>
+                                <p class="item-category">Aksessuarlar</p>
+                                <div class="item-options">
+                                    <span>Rang: Qora</span>
+                                    <span>Material: Teri</span>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="action-link wishlist">
+                                        <i class="fas fa-heart"></i>
+                                        Sevimlilar
+                                    </button>
+                                    <button class="action-link remove" data-id="2">
+                                        <i class="fas fa-trash"></i>
+                                        O'chirish
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="item-quantity">
+                                <label>Miqdor:</label>
+                                <div class="quantity-control">
+                                    <button class="qty-btn minus" data-id="2">-</button>
+                                    <input type="number" value="1" min="1" class="quantity-input" data-id="2">
+                                    <button class="qty-btn plus" data-id="2">+</button>
+                                </div>
+                            </div>
+                            <div class="item-price">
+                                <span class="current-price">$89</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Continue Shopping -->
+                    <div class="continue-shopping">
+                        <a href="products.html" class="continue-btn">
+                            <i class="fas fa-arrow-left"></i>
+                            Xaridni Davom Ettirish
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cart Summary -->
+                <div class="cart-summary">
+                    <div class="summary-card">
+                        <h3>Buyurtma Xulasasi</h3>
+                        
+                        <div class="summary-line">
+                            <span>Mahsulotlar narxi:</span>
+                            <span id="subtotal">$348</span>
+                        </div>
+                        
+                        <div class="summary-line">
+                            <span>Chegirma:</span>
+                            <span id="discount" class="discount-amount">-$70</span>
+                        </div>
+                        
+                        <div class="summary-line">
+                            <span>Yetkazib berish:</span>
+                            <span id="shipping">$15</span>
+                        </div>
+                        
+                        <div class="summary-line total">
+                            <span>Jami:</span>
+                            <span id="total">$293</span>
+                        </div>
+
+                        <!-- Promo Code -->
+                        <div class="promo-section">
+                            <h4>Promokod</h4>
+                            <div class="promo-input">
+                                <input type="text" placeholder="Promokodni kiriting" id="promoCode">
+                                <button class="apply-promo-btn">Qo'llash</button>
+                            </div>
+                        </div>
+
+                        <!-- Checkout Button -->
+                        <button class="checkout-btn">
+                            <i class="fas fa-credit-card"></i>
+                            Buyurtmani Rasmiylashtirish
+                        </button>
+
+                        <!-- Payment Methods -->
+                        <div class="payment-methods">
+                            <span>To'lov usullari:</span>
+                            <div class="payment-icons">
+                                <i class="fab fa-cc-visa"></i>
+                                <i class="fab fa-cc-mastercard"></i>
+                                <i class="fab fa-cc-paypal"></i>
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                        </div>
+
+                        <!-- Security -->
+                        <div class="security-info">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Xavfsiz to'lov kafolatlanadi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recently Viewed -->
+    <section class="recently-viewed">
+        <div class="container">
+            <div class="section-header">
+                <h2>Yaqinda Ko'rilgan Mahsulotlar</h2>
+                <p>Siz ko'rgan boshqa mahsulotlar</p>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="placeholder-product product2"></div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                            <a href="product-detail.html?id=2" class="action-btn"><i class="fas fa-eye"></i></a>
+                            <button class="action-btn add-to-cart" data-id="2"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h4>Classic Suit</h4>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$499</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="placeholder-product product3"></div>
+                        <div class="product-badge sale">Chegirma</div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                            <a href="product-detail.html?id=3" class="action-btn"><i class="fas fa-eye"></i></a>
+                            <button class="action-btn add-to-cart" data-id="3"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h4>Casual Wear</h4>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$149</span>
+                            <span class="old-price">$199</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="placeholder-product product5"></div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                            <a href="product-detail.html?id=5" class="action-btn"><i class="fas fa-eye"></i></a>
+                            <button class="action-btn add-to-cart" data-id="5"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h4>Sport Shoes</h4>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$199</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="placeholder-product product6"></div>
+                        <div class="product-badge sale">-30%</div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
+                            <a href="product-detail.html?id=6" class="action-btn"><i class="fas fa-eye"></i></a>
+                            <button class="action-btn add-to-cart" data-id="6"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h4>Casual T-Shirt</h4>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$79</span>
+                            <span class="old-price">$99</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Empty Cart State (Hidden by default) -->
+    <section class="empty-cart" id="emptyCart" style="display: none;">
+        <div class="container">
+            <div class="empty-cart-content">
+                <div class="empty-cart-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+                <h2>Savatingiz Bo'sh</h2>
+                <p>Hali hech qanday mahsulot qo'shilmagan. Mahsulotlar sahifasiga o'ting va o'zingizga yoqqan narsalarni tanlang!</p>
+                <a href="products.html" class="shop-now-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    Hozir Xarid Qiling
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Elegant Fashion</h3>
+                    <p>Zamonaviy moda dunyosidagi eng yaxshi tanlov. Sifat va uslub birligi.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Tezkor Havolalar</h4>
+                    <ul>
+                        <li><a href="index.html">Bosh sahifa</a></li>
+                        <li><a href="products.html">Mahsulotlar</a></li>
+                        <li><a href="about.html">Biz haqimizda</a></li>
+                        <li><a href="contact.html">Aloqa</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Kategoriyalar</h4>
+                    <ul>
+                        <li><a href="products.html?category=women">Ayollar kiyimi</a></li>
+                        <li><a href="products.html?category=men">Erkaklar kiyimi</a></li>
+                        <li><a href="products.html?category=accessories">Aksessuarlar</a></li>
+                        <li><a href="products.html?category=shoes">Poyabzallar</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Aloqa Ma'lumotlari</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Tashkent, O'zbekiston</p>
+                        <p><i class="fas fa-phone"></i> +998 90 123 45 67</p>
+                        <p><i class="fas fa-envelope"></i> info@elegantfashion.uz</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Elegant Fashion. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html>
