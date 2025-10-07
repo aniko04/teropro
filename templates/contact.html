@@ -1,11 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aloqa - Elegant Fashion</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="additional-styles.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/additional-styles.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -15,26 +16,26 @@
         <nav class="navbar">
             <div class="nav-container">
                 <div class="nav-logo">
-                    <a href="index.html"><h2>Elegant Fashion</h2></a>
+                    <a href="{% url 'home' %}"><h2>Elegant Fashion</h2></a>
                 </div>
                 <ul class="nav-menu">
                     <li class="nav-item">
-                        <a href="index.html" class="nav-link">Bosh sahifa</a>
+                        <a href="{% url 'home' %}" class="nav-link">Bosh sahifa</a>
                     </li>
                     <li class="nav-item">
-                        <a href="products.html" class="nav-link">Mahsulotlar</a>
+                        <a href="{% url 'product_details' %}" class="nav-link">Mahsulotlar</a>
                     </li>
                     <li class="nav-item">
-                        <a href="about.html" class="nav-link">Biz haqimizda</a>
+                        <a href="{% url 'about' %}" class="nav-link">Biz haqimizda</a>
                     </li>
                     <li class="nav-item">
-                        <a href="contact.html" class="nav-link active">Aloqa</a>
+                        <a href="{% url 'contact' %}" class="nav-link active">Aloqa</a>
                     </li>
                 </ul>
                 <div class="nav-icons">
                     <i class="fas fa-search"></i>
                     <i class="fas fa-user"></i>
-                    <a href="cart.html" class="cart-link">
+                    <a href="{% url 'cart' %}" class="cart-link">
                         <i class="fas fa-shopping-bag"></i>
                         <span class="cart-count">0</span>
                     </a>
@@ -55,7 +56,7 @@
                 <h1>Biz Bilan Aloqa</h1>
                 <p>Savollaringiz bormi? Biz sizga yordam berishga tayyormiz</p>
                 <nav class="breadcrumb">
-                    <a href="index.html">Bosh sahifa</a>
+                    <a href="{% url 'home' %}">Bosh sahifa</a>
                     <span>/</span>
                     <span>Aloqa</span>
                 </nav>
@@ -312,10 +313,10 @@
                 <div class="footer-section">
                     <h4>Tezkor Havolalar</h4>
                     <ul>
-                        <li><a href="index.html">Bosh sahifa</a></li>
-                        <li><a href="products.html">Mahsulotlar</a></li>
-                        <li><a href="about.html">Biz haqimizda</a></li>
-                        <li><a href="contact.html">Aloqa</a></li>
+                        <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
+                        <li><a href="{% url 'product' %}">Mahsulotlar</a></li>
+                        <li><a href="{% url 'about' %}">Biz haqimizda</a></li>
+                        <li><a href="{% url 'contact' %}">Aloqa</a></li>
                     </ul>
                 </div>
                 
