@@ -16,6 +16,10 @@ class Product(models.Model):
     count = models.IntegerField(default=0)
     colors = models.ManyToManyField('Colors')
     sizes = models.ManyToManyField('Sizes')
+    materials = models.ForeignKey('Materials', on_delete=models.CASCADE, null=True)
+    lengths = models.IntegerField(null=True, blank=True)
+    producer = models.ForeignKey('Producer', on_delete=models.CASCADE, null=True)
+    guarantee = models.IntegerField(null=True, blank=True)
     content = RichTextField(blank=True, null=True)
 
     def __str__(self):
@@ -40,12 +44,25 @@ class Status(models.Model):
         return self.name
     
 class Colors(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50,null=True)
+    code = models.CharField(max_length=7, null=True)
 
     def __str__(self):
         return self.name
 
 class Sizes(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+class Materials(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+class Producer(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):

@@ -74,26 +74,24 @@
                 <!-- Product Images -->
                 <div class="product-images">
                     <div class="main-image">
-                        <div class="image-placeholder main-product-img product1"></div>
+                        <div class="image-placeholder main-product-img product1">
+                            <img class="product-image" src="{{ product.main_image.url }}" alt="{{ product.name }}">
+                        </div>
                         <div class="image-badges">
                             <span class="badge new">{{ product.status }}</span>
                         </div>
                     </div>
                     <div class="thumbnail-images">
+                        {% for img in product.images.all %}
                         <div class="thumbnail active">
-                            <div class="image-placeholder product1"></div>
+                            <div class="image-placeholder product1">
+                                <img class="product-image" src="{{ img.image.url }}" alt="Thumbnail" width="100%">
+                            </div>
                         </div>
-                        <div class="thumbnail">
-                            <div class="image-placeholder product1-alt1"></div>
-                        </div>
-                        <div class="thumbnail">
-                            <div class="image-placeholder product1-alt2"></div>
-                        </div>
-                        <div class="thumbnail">
-                            <div class="image-placeholder product1-alt3"></div>
-                        </div>
+                        {% endfor %}    
                     </div>
                 </div>
+
 
                 <!-- Product Info -->
                 <div class="product-info">
@@ -127,7 +125,7 @@
                             <div class="color-options">
                                 {% for color in product.colors.all %}
                                 <div class="color-option" data-color="{{ color.name }}"
-                                    style="background: {{ color.name }};"></div>
+                                    style="background: {{ color.code }};"></div>
                                 {% endfor %}
                             </div>
                         </div>
@@ -178,7 +176,7 @@
                         </div>
                         <div class="feature">
                             <i class="fas fa-shield-alt"></i>
-                            <span>1 yil kafolat</span>
+                            <span>{{ product.guarantee }}</span>
                         </div>
                         <div class="feature">
                             <i class="fas fa-award"></i>
@@ -210,35 +208,29 @@
                     <table class="specs-table">
                         <tr>
                             <td>Material</td>
-                            <td>100% Premium Paxta</td>
+                            <td>{{ product.materials }}</td>
                         </tr>
                         <tr>
                             <td>Rang</td>
-                            <td>Ko'k, Qizil, Yashil, Qora</td>
+                            <td>{{ product.colors.all|join:", " }}</td>
                         </tr>
                         <tr>
                             <td>O'lchamlar</td>
-                            <td>XS, S, M, L, XL</td>
+                            <td>{{ product.sizes.all|join:", " }}</td>
                         </tr>
                         <tr>
                             <td>Uzunlik</td>
-                            <td>95 sm (M o'lcham uchun)</td>
+                            <td>{{ product.lengths }} sm</td>
                         </tr>
-                        <tr>
-                            <td>Yuvish</td>
-                            <td>30°C, mashina yuvish mumkin</td>
-                        </tr>
+                        
                         <tr>
                             <td>Ishlab chiqarilgan</td>
-                            <td>Turkiya</td>
+                            <td>{{ product.producer }}</td>
                         </tr>
-                        <tr>
-                            <td>Artikul</td>
-                            <td>EF-DR-001</td>
-                        </tr>
+                       
                         <tr>
                             <td>Kafolat</td>
-                            <td>1 yil</td>
+                            <td>{{ product.guarantee }}</td>
                         </tr>
                     </table>
                 </div>
