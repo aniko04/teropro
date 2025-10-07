@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from .models import *
 
 # Create your views here.
-def admin(request):
-    return render(request, 'admin.html')
+
 
 def home(request):
     return render(request, 'index.html')
@@ -17,7 +17,17 @@ def contact(request):
     return render(request, 'contact.html')
 
 def product(request):
-    return render(request, 'products.html')
+    products = Product.objects.all()
+    context = {
+        'products': products
+    }
+    return render(request, 'products.html', context)
 
-def product_details(request):
-    return render(request, 'product_details.html')
+def product_details(request, id):
+    product = get_object_or_404(Product, id=id)
+    discount = (product.current_price / product.old_price * 100)-100
+    context = {
+        'product': product,
+        'discount': discount
+    }
+    return render(request, 'product-detail.html', context)

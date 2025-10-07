@@ -57,7 +57,7 @@
                 <span>/</span>
                 <a href="{% url 'product' %}">Mahsulotlar</a>
                 <span>/</span>
-                <span id="productName">Elegant Dress</span>
+                <span id="productName">{{ product.name }}</span>
             </nav>
         </div>
     </section>
@@ -71,7 +71,7 @@
                     <div class="main-image">
                         <div class="image-placeholder main-product-img product1"></div>
                         <div class="image-badges">
-                            <span class="badge new">Yangi</span>
+                            <span class="badge new">{{ product.status }}</span>
                         </div>
                     </div>
                     <div class="thumbnail-images">
@@ -92,7 +92,7 @@
 
                 <!-- Product Info -->
                 <div class="product-info">
-                    <h1 class="product-title">Elegant Dress</h1>
+                    <h1 class="product-title">{{ product.name }}</h1>
                     <div class="product-rating">
                         <div class="stars">
                             <i class="fas fa-star"></i>
@@ -101,18 +101,18 @@
                             <i class="fas fa-star"></i>
                             <i class="far fa-star"></i>
                         </div>
-                        <span class="rating-text">(24 baho)</span>
+                        <span class="rating-text">({{ product.grade }} baho)</span>
                         <a href="#reviews" class="reviews-link">Barcha baholarni ko'rish</a>
                     </div>
                     
                     <div class="product-price">
-                        <span class="current-price">$259</span>
-                        <span class="old-price">$329</span>
-                        <span class="discount">-21%</span>
+                        <span class="current-price">${{ product.current_price }}</span>
+                        <span class="old-price">${{ product.old_price }}</span>
+                        <span class="discount">{{ discount }}%</span>
                     </div>
 
                     <div class="product-description">
-                        <p>Bu nafis dress zamonaviy ayollar uchun mo'ljallangan bo'lib, yuqori sifatli materiallardan tayyorlangan. Klassik va zamonaviy uslublarning mukammal uyg'unligi.</p>
+                        <p>{{ product.description }}</p>
                     </div>
 
                     <!-- Product Options -->
@@ -120,21 +120,18 @@
                         <div class="option-group">
                             <label>Rang:</label>
                             <div class="color-options">
-                                <div class="color-option active" data-color="blue" style="background: #667eea;"></div>
-                                <div class="color-option" data-color="red" style="background: #ff6b6b;"></div>
-                                <div class="color-option" data-color="green" style="background: #4ecdc4;"></div>
-                                <div class="color-option" data-color="black" style="background: #333;"></div>
+                                {% for color in product.colors.all %}
+                                    <div class="color-option" data-color="{{ color.name }}" style="background: {{ color.name }};"></div>
+                                {% endfor %}
                             </div>
                         </div>
 
                         <div class="option-group">
                             <label>O'lcham:</label>
                             <div class="size-options">
-                                <button class="size-option" data-size="xs">XS</button>
-                                <button class="size-option" data-size="s">S</button>
-                                <button class="size-option active" data-size="m">M</button>
-                                <button class="size-option" data-size="l">L</button>
-                                <button class="size-option" data-size="xl">XL</button>
+                                {% for size in product.sizes.all %}
+                                    <button class="size-option" data-size="{{ size.name }}">{{ size.name }}</button>
+                                {% endfor %}
                             </div>
                             <a href="#" class="size-guide">O'lchamlar jadvali</a>
                         </div>
@@ -199,21 +196,7 @@
 
             <div class="tabs-content">
                 <div class="tab-pane active" id="description">
-                    <h3>Mahsulot Tavsifi</h3>
-                    <p>Bu Elegant Dress zamonaviy ayollar uchun yaratilgan bo'lib, eng yuqori sifatli materiallardan ishlab chiqarilgan. Uning noyob dizayni va mukammal qilib tikilishi sizga har qanday tadbirda ajralib turishga imkon beradi.</p>
-                    
-                    <h4>Asosiy Xususiyatlari:</h4>
-                    <ul>
-                        <li>100% Premium paxta materialdan ishlab chiqarilgan</li>
-                        <li>Zamonaviy va klassik dizayn uyg'unligi</li>
-                        <li>Har qanday fasl uchun mos</li>
-                        <li>Professional yuvish va tozalash imkoniyati</li>
-                        <li>Allergiya keltirib chiqarmaydi</li>
-                        <li>Niqobsiz va nafis ko'rinish</li>
-                    </ul>
-
-                    <h4>Foydalanish Maslahatlari:</h4>
-                    <p>Mahsulotni uzoq muddat ishlatish uchun 30°C da yuvish, to'g'ridan-to'g'ri quyosh nuridan saqlash va dazmol bilan ehtiyotkorlik bilan foydalanish tavsiya etiladi.</p>
+                    {{ product.content|safe }}
                 </div>
 
                 <div class="tab-pane" id="specifications">
@@ -562,7 +545,8 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="product-detail.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/product-detail.js' %}"></script>
+    <script src="{% static 'js/tabs-debug.js' %}"></script>
 </body>
 </html>

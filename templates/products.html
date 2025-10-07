@@ -111,226 +111,36 @@
         <div class="container">
             <div class="products-grid" id="productsGrid">
                 <!-- Product 1 -->
+                {% for product in products %}
                 <div class="product-card" data-category="women" data-price="259">
                     <div class="product-image">
+                        <img src="{{ product.main_image.url }}" alt="{{ product.name }}" width="100%">
                         <div class="placeholder-product product1"></div>
-                        <div class="product-badge">Yangi</div>
+                        <div class="product-badge">{{ product.status}}</div>
                         <div class="product-actions">
                             <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
-                            <a href="product-detail.html?id=1" class="action-btn"><i class="fas fa-eye"></i></a>
+                            <a href="{% url 'product_details' product.id %}" class="action-btn"><i class="fas fa-eye"></i></a>
                             <button class="action-btn add-to-cart" data-id="1"><i class="fas fa-shopping-cart"></i></button>
                         </div>
                     </div>
                     <div class="product-info">
-                        <h4>Elegant Dress</h4>
-                        <p class="product-category">Ayollar kiyimi</p>
+                        <h4>{{ product.name }}</h4>
+                        <p class="product-category">{{ product.category }}</p>
                         <div class="product-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="far fa-star"></i>
-                            <span>(24 baho)</span>
+                            <span>{{ product.grade }}</span>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$259</span>
-                            <span class="old-price">$329</span>
+                            <span class="current-price">${{ product.current_price }}</span>
+                            <span class="old-price">${{ product.old_price }}</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Product 2 -->
-                <div class="product-card" data-category="men" data-price="499">
-                    <div class="product-image">
-                        <div class="placeholder-product product2"></div>
-                        <div class="product-actions">
-                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
-                            <a href="product-detail.html?id=2" class="action-btn"><i class="fas fa-eye"></i></a>
-                            <button class="action-btn add-to-cart" data-id="2"><i class="fas fa-shopping-cart"></i></button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h4>Classic Suit</h4>
-                        <p class="product-category">Erkaklar kiyimi</p>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>(18 baho)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">$499</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 3 -->
-                <div class="product-card" data-category="women" data-price="149">
-                    <div class="product-image">
-                        <div class="placeholder-product product3"></div>
-                        <div class="product-badge sale">Chegirma</div>
-                        <div class="product-actions">
-                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
-                            <a href="product-detail.html?id=3" class="action-btn"><i class="fas fa-eye"></i></a>
-                            <button class="action-btn add-to-cart" data-id="3"><i class="fas fa-shopping-cart"></i></button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h4>Casual Wear</h4>
-                        <p class="product-category">Ayollar kiyimi</p>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <span>(31 baho)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">$149</span>
-                            <span class="old-price">$199</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 4 -->
-                <div class="product-card" data-category="accessories" data-price="89">
-                    <div class="product-image">
-                        <div class="placeholder-product product4"></div>
-                        <div class="product-actions">
-                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
-                            <a href="product-detail.html?id=4" class="action-btn"><i class="fas fa-eye"></i></a>
-                            <button class="action-btn add-to-cart" data-id="4"><i class="fas fa-shopping-cart"></i></button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h4>Designer Bag</h4>
-                        <p class="product-category">Aksessuarlar</p>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>(45 baho)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">$89</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 5 -->
-                <div class="product-card" data-category="shoes" data-price="199">
-                    <div class="product-image">
-                        <div class="placeholder-product product5"></div>
-                        <div class="product-actions">
-                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
-                            <a href="product-detail.html?id=5" class="action-btn"><i class="fas fa-eye"></i></a>
-                            <button class="action-btn add-to-cart" data-id="5"><i class="fas fa-shopping-cart"></i></button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h4>Sport Shoes</h4>
-                        <p class="product-category">Poyabzal</p>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <span>(12 baho)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">$199</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 6 -->
-                <div class="product-card" data-category="men" data-price="79">
-                    <div class="product-image">
-                        <div class="placeholder-product product6"></div>
-                        <div class="product-badge sale">-30%</div>
-                        <div class="product-actions">
-                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
-                            <a href="product-detail.html?id=6" class="action-btn"><i class="fas fa-eye"></i></a>
-                            <button class="action-btn add-to-cart" data-id="6"><i class="fas fa-shopping-cart"></i></button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h4>Casual T-Shirt</h4>
-                        <p class="product-category">Erkaklar kiyimi</p>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>(67 baho)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">$79</span>
-                            <span class="old-price">$99</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 7 -->
-                <div class="product-card" data-category="women" data-price="320">
-                    <div class="product-image">
-                        <div class="placeholder-product product7"></div>
-                        <div class="product-actions">
-                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
-                            <a href="product-detail.html?id=7" class="action-btn"><i class="fas fa-eye"></i></a>
-                            <button class="action-btn add-to-cart" data-id="7"><i class="fas fa-shopping-cart"></i></button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h4>Evening Dress</h4>
-                        <p class="product-category">Ayollar kiyimi</p>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>(39 baho)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">$320</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 8 -->
-                <div class="product-card" data-category="accessories" data-price="45">
-                    <div class="product-image">
-                        <div class="placeholder-product product8"></div>
-                        <div class="product-actions">
-                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
-                            <a href="product-detail.html?id=8" class="action-btn"><i class="fas fa-eye"></i></a>
-                            <button class="action-btn add-to-cart" data-id="8"><i class="fas fa-shopping-cart"></i></button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h4>Luxury Watch</h4>
-                        <p class="product-category">Aksessuarlar</p>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <span>(28 baho)</span>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">$45</span>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
 
             <!-- Pagination -->

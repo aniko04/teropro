@@ -123,9 +123,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
     
+    console.log('Tab buttons found:', tabButtons.length);
+    console.log('Tab panes found:', tabPanes.length);
+    
     tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
             const targetTab = this.dataset.tab;
+            
+            console.log('Tab clicked:', targetTab);
             
             // Remove active class from all buttons and panes
             tabButtons.forEach(btn => btn.classList.remove('active'));
@@ -133,7 +139,13 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Add active class to clicked button and corresponding pane
             this.classList.add('active');
-            document.getElementById(targetTab)?.classList.add('active');
+            const targetPane = document.getElementById(targetTab);
+            if (targetPane) {
+                targetPane.classList.add('active');
+                console.log('Tab activated:', targetTab);
+            } else {
+                console.error('Tab pane not found:', targetTab);
+            }
         });
     });
     
