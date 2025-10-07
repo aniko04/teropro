@@ -1,22 +1,27 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="uz">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mahsulot Tafsilotlari - Elegant Fashion</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/additional-styles.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
     <!-- Header -->
     <header class="header">
         <nav class="navbar">
             <div class="nav-container">
                 <div class="nav-logo">
-                    <a href="{% url 'home' %}"><h2>Elegant Fashion</h2></a>
+                    <a href="{% url 'home' %}">
+                        <h2>Elegant Fashion</h2>
+                    </a>
                 </div>
                 <ul class="nav-menu">
                     <li class="nav-item">
@@ -104,7 +109,7 @@
                         <span class="rating-text">({{ product.grade }} baho)</span>
                         <a href="#reviews" class="reviews-link">Barcha baholarni ko'rish</a>
                     </div>
-                    
+
                     <div class="product-price">
                         <span class="current-price">${{ product.current_price }}</span>
                         <span class="old-price">${{ product.old_price }}</span>
@@ -121,7 +126,8 @@
                             <label>Rang:</label>
                             <div class="color-options">
                                 {% for color in product.colors.all %}
-                                    <div class="color-option" data-color="{{ color.name }}" style="background: {{ color.name }};"></div>
+                                <div class="color-option" data-color="{{ color.name }}"
+                                    style="background: {{ color.name }};"></div>
                                 {% endfor %}
                             </div>
                         </div>
@@ -130,7 +136,7 @@
                             <label>O'lcham:</label>
                             <div class="size-options">
                                 {% for size in product.sizes.all %}
-                                    <button class="size-option" data-size="{{ size.name }}">{{ size.name }}</button>
+                                <button class="size-option" data-size="{{ size.name }}">{{ size.name }}</button>
                                 {% endfor %}
                             </div>
                             <a href="#" class="size-guide">O'lchamlar jadvali</a>
@@ -255,27 +261,37 @@
                                 <div class="rating-breakdown">
                                     <div class="rating-bar">
                                         <span>5 yulduz</span>
-                                        <div class="bar"><div class="fill" style="width: 60%"></div></div>
+                                        <div class="bar">
+                                            <div class="fill" style="width: 60%"></div>
+                                        </div>
                                         <span>12</span>
                                     </div>
                                     <div class="rating-bar">
                                         <span>4 yulduz</span>
-                                        <div class="bar"><div class="fill" style="width: 30%"></div></div>
+                                        <div class="bar">
+                                            <div class="fill" style="width: 30%"></div>
+                                        </div>
                                         <span>8</span>
                                     </div>
                                     <div class="rating-bar">
                                         <span>3 yulduz</span>
-                                        <div class="bar"><div class="fill" style="width: 8%"></div></div>
+                                        <div class="bar">
+                                            <div class="fill" style="width: 8%"></div>
+                                        </div>
                                         <span>2</span>
                                     </div>
                                     <div class="rating-bar">
                                         <span>2 yulduz</span>
-                                        <div class="bar"><div class="fill" style="width: 4%"></div></div>
+                                        <div class="bar">
+                                            <div class="fill" style="width: 4%"></div>
+                                        </div>
                                         <span>1</span>
                                     </div>
                                     <div class="rating-bar">
                                         <span>1 yulduz</span>
-                                        <div class="bar"><div class="fill" style="width: 4%"></div></div>
+                                        <div class="bar">
+                                            <div class="fill" style="width: 4%"></div>
+                                        </div>
                                         <span>1</span>
                                     </div>
                                 </div>
@@ -301,7 +317,8 @@
                                     </div>
                                 </div>
                                 <div class="review-content">
-                                    <p>Juda chiroyli va sifatli mahsulot! Material va tikuv juda yaxshi. Tavsiya qilaman!</p>
+                                    <p>Juda chiroyli va sifatli mahsulot! Material va tikuv juda yaxshi. Tavsiya
+                                        qilaman!</p>
                                 </div>
                             </div>
 
@@ -334,7 +351,7 @@
 
                 <div class="tab-pane" id="shipping">
                     <h3>Yetkazib Berish Ma'lumotlari</h3>
-                    
+
                     <div class="shipping-options">
                         <div class="shipping-option">
                             <div class="shipping-icon">
@@ -391,7 +408,7 @@
                 <h2>O'xshash Mahsulotlar</h2>
                 <p>Sizga yoqishi mumkin bo'lgan boshqa mahsulotlar</p>
             </div>
-            
+
             <div class="products-grid">
                 <div class="product-card">
                     <div class="product-image">
@@ -399,7 +416,8 @@
                         <div class="product-actions">
                             <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
                             <a href="product-detail.html?id=2" class="action-btn"><i class="fas fa-eye"></i></a>
-                            <button class="action-btn add-to-cart" data-id="2"><i class="fas fa-shopping-cart"></i></button>
+                            <button class="action-btn add-to-cart" data-id="2"><i
+                                    class="fas fa-shopping-cart"></i></button>
                         </div>
                     </div>
                     <div class="product-info">
@@ -424,7 +442,8 @@
                         <div class="product-actions">
                             <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
                             <a href="product-detail.html?id=3" class="action-btn"><i class="fas fa-eye"></i></a>
-                            <button class="action-btn add-to-cart" data-id="3"><i class="fas fa-shopping-cart"></i></button>
+                            <button class="action-btn add-to-cart" data-id="3"><i
+                                    class="fas fa-shopping-cart"></i></button>
                         </div>
                     </div>
                     <div class="product-info">
@@ -449,7 +468,8 @@
                         <div class="product-actions">
                             <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
                             <a href="product-detail.html?id=4" class="action-btn"><i class="fas fa-eye"></i></a>
-                            <button class="action-btn add-to-cart" data-id="4"><i class="fas fa-shopping-cart"></i></button>
+                            <button class="action-btn add-to-cart" data-id="4"><i
+                                    class="fas fa-shopping-cart"></i></button>
                         </div>
                     </div>
                     <div class="product-info">
@@ -473,7 +493,8 @@
                         <div class="product-actions">
                             <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
                             <a href="product-detail.html?id=5" class="action-btn"><i class="fas fa-eye"></i></a>
-                            <button class="action-btn add-to-cart" data-id="5"><i class="fas fa-shopping-cart"></i></button>
+                            <button class="action-btn add-to-cart" data-id="5"><i
+                                    class="fas fa-shopping-cart"></i></button>
                         </div>
                     </div>
                     <div class="product-info">
@@ -508,7 +529,7 @@
                         <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="footer-section">
                     <h4>Tezkor Havolalar</h4>
                     <ul>
@@ -518,7 +539,7 @@
                         <li><a href="{% url 'contact' %}">Aloqa</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
                     <h4>Kategoriyalar</h4>
                     <ul>
@@ -528,7 +549,7 @@
                         <li><a href="products.html?category=shoes">Poyabzallar</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
                     <h4>Aloqa Ma'lumotlari</h4>
                     <div class="contact-info">
@@ -538,7 +559,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <p>&copy; 2025 Elegant Fashion. Barcha huquqlar himoyalangan.</p>
             </div>
@@ -549,4 +570,5 @@
     <script src="{% static 'js/product-detail.js' %}"></script>
     <script src="{% static 'js/tabs-debug.js' %}"></script>
 </body>
+
 </html>
