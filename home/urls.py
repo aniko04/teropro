@@ -9,5 +9,10 @@ urlpatterns = [
     path('contact', contact, name='contact'),
     path('product', product, name='product'),
     path('product_details/<int:id>/', product_details, name='product_details'),
+    path('login', login_view, name='login'),
+    path('register', register, name='register'),
+    path('logout', logout_view, name='logout'),
+    path('like/<int:product_id>/', like_product, name='like_product'),
+    path('likes/', likes, name='likes'),
     
 ]

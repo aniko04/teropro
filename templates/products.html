@@ -1,112 +1,70 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="uz">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mahsulotlar - Elegant Fashion</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/additional-styles.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="nav-logo">
-                    <a href="{% url 'home' %}"><h2>Elegant Fashion</h2></a>
-                </div>
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="{% url 'home' %}" class="nav-link">Bosh sahifa</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'product' %}" class="nav-link active">Mahsulotlar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'about' %}" class="nav-link">Biz haqimizda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'contact' %}" class="nav-link">Aloqa</a>
-                    </li>
-                </ul>
-                <div class="nav-icons">
-                    <i class="fas fa-search"></i>
-                    <i class="fas fa-user"></i>
-                    <a href="{% url 'cart' %}" class="cart-link">
-                        <i class="fas fa-shopping-bag"></i>
-                        <span class="cart-count">0</span>
-                    </a>
-                </div>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-            </div>
-        </nav>
-    </header>
+{% extends 'base.html' %}{% load static %} {% load tags %}
+{% block content %}
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <div class="page-header-content">
-                <h1>Barcha Mahsulotlar</h1>
-                <p>Eng yangi va sifatli kiyimlarimizni kashf eting</p>
-                <nav class="breadcrumb">
-                    <a href="{% url 'home' %}">Bosh sahifa</a>
-                    <span>/</span>
-                    <span>Mahsulotlar</span>
-                </nav>
-            </div>
-        </div>
-    </section>
-
-    <!-- Filter Section -->
-<section>  
-<section class="filter-section">
+<!-- Page Header -->
+<section class="page-header">
     <div class="container">
-        <div class="filters">
-            <form method="get" action="{% url 'product' %}">
-                <div class="filter-group">
-                    <label>Kategoriya:</label>
-                    <select name="category" id="categoryFilter" onchange="this.form.submit()">
-                        <option value="">Barchasi</option>
-                        {% for c in categories %}
-                            <option value="{{ c.id }}" {% if selected_category and selected_category.id == c.id %}selected{% endif %}>
-                                {{ c.name }}
-                            </option>
-                        {% endfor %}
-                    </select>
-                </div>
-
-                <div class="filter-group">
-                    <label>Narx oralig'i:</label>
-                    <select name="price" id="priceFilter" onchange="this.form.submit()">
-                        <option value="">Barchasi</option>
-                        <option value="0-100" {% if selected_price == "0-100" %}selected{% endif %}>$0 - $100</option>
-                        <option value="100-300" {% if selected_price == "100-300" %}selected{% endif %}>$100 - $300</option>
-                        <option value="300-500" {% if selected_price == "300-500" %}selected{% endif %}>$300 - $500</option>
-                        <option value="500+" {% if selected_price == "500+" %}selected{% endif %}>$500+</option>
-                    </select>
-                </div>
-
-                <div class="filter-group">
-                    <label>Saralash:</label>
-                    <select name="sort" id="sortFilter" onchange="this.form.submit()">
-                        <option value="">Standart</option>
-                        <option value="price-low" {% if selected_sort == "price-low" %}selected{% endif %}>Narx: Pastdan yuqoriga</option>
-                        <option value="price-high" {% if selected_sort == "price-high" %}selected{% endif %}>Narx: Yuqoridan pastga</option>
-                        <option value="name" {% if selected_sort == "name" %}selected{% endif %}>Nomi bo'yicha</option>
-                        <option value="newest" {% if selected_sort == "newest" %}selected{% endif %}>Eng yangi</option>
-                    </select>
-                </div>
-            </form>
+        <div class="page-header-content">
+            <h1>Barcha Mahsulotlar</h1>
+            <p>Eng yangi va sifatli kiyimlarimizni kashf eting</p>
+            <nav class="breadcrumb">
+                <a href="{% url 'home' %}">Bosh sahifa</a>
+                <span>/</span>
+                <span>Mahsulotlar</span>
+            </nav>
         </div>
     </div>
 </section>
+
+<!-- Filter Section -->
+<section>
+    <section class="filter-section">
+        <div class="container">
+            <div class="filters">
+                <form method="get" action="{% url 'product' %}">
+                    <div class="filter-group">
+                        <label>Kategoriya:</label>
+                        <select name="category" id="categoryFilter" onchange="this.form.submit()">
+                            <option value="">Barchasi</option>
+                            {% for c in categories %}
+                            <option value="{{ c.id }}" {% if selected_category and selected_category.id == c.id %}selected{% endif %}>
+                                {{ c.name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Narx oralig'i:</label>
+                        <select name="price" id="priceFilter" onchange="this.form.submit()">
+                            <option value="">Barchasi</option>
+                            <option value="0-100" {% if selected_price == "0-100" %}selected{% endif %}>$0 - $100</option>
+                            <option value="100-300" {% if selected_price == "100-300" %}selected{% endif %}>$100 - $300
+                            </option>
+                            <option value="300-500" {% if selected_price == "300-500" %}selected{% endif %}>$300 - $500
+                            </option>
+                            <option value="500+" {% if selected_price == "500+" %}selected{% endif %}>$500+</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Saralash:</label>
+                        <select name="sort" id="sortFilter" onchange="this.form.submit()">
+                            <option value="">Standart</option>
+                            <option value="price-low" {% if selected_sort == "price-low" %}selected{% endif %}>Narx:
+                                Pastdan yuqoriga</option>
+                            <option value="price-high" {% if selected_sort == "price-high" %}selected{% endif %}>Narx:
+                                Yuqoridan pastga</option>
+                            <option value="name" {% if selected_sort == "name" %}selected{% endif %}>Nomi bo'yicha
+                            </option>
+                            <option value="newest" {% if selected_sort == "newest" %}selected{% endif %}>Eng yangi
+                            </option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 
 
     <!-- Products Section -->
@@ -121,9 +79,11 @@
                         <div class="placeholder-product product1"></div>
                         <div class="product-badge">{{ product.status}}</div>
                         <div class="product-actions">
-                            <button class="action-btn wishlist-btn"><i class="far fa-heart"></i></button>
-                            <a href="{% url 'product_details' product.id %}" class="action-btn"><i class="fas fa-eye"></i></a>
-                            <button class="action-btn add-to-cart" data-id="1"><i class="fas fa-shopping-cart"></i></button>
+                            <a href="{% url 'like_product' product.id  %}?path={{ request.path }}" class="action-btn">{% if user.is_authenticated and product|in_likes:request.user %} <i class="fas fa-heart"></i>{% else %} <i class="far fa-heart"></i> {% endif %} </a>
+                            <a href="{% url 'product_details' product.id %}" class="action-btn"><i
+                                    class="fas fa-eye"></i></a>
+                            <button class="action-btn add-to-cart" data-id="1"><i
+                                    class="fas fa-shopping-cart"></i></button>
                         </div>
                     </div>
                     <div class="product-info">
@@ -138,8 +98,8 @@
                             <span>{{ product.grade }}</span>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">${{ product.current_price }}</span>
-                            <span class="old-price">${{ product.old_price }}</span>
+                            <span class="current-price">${{ product.current_price|intspace }}</span>
+                            <span class="old-price">${{ product.old_price|intspace }}</span>
                         </div>
                     </div>
                 </div>
@@ -147,79 +107,29 @@
             </div>
 
             <!-- Pagination -->
-         <div class="pagination">
-            {% if products.has_previous %}
-                <a href="?category={{ selected_category }}&price={{ selected_price }}&sort={{ selected_sort }}&page={{ products.previous_page_number }}">&laquo;</a>
-            {% endif %}
-
-            {% for num in products.paginator.page_range %}
-                {% if products.number == num %}
-                    <span class="active">{{ num }}</span>
-                {% else %}
-                    <a href="?category={{ selected_category }}&price={{ selected_price }}&sort={{ selected_sort }}&page={{ num }}">{{ num }}</a>
+            <div class="pagination">
+                {% if products.has_previous %}
+                <a
+                    href="?category={{ selected_category }}&price={{ selected_price }}&sort={{ selected_sort }}&page={{ products.previous_page_number }}">&laquo;</a>
                 {% endif %}
-            {% endfor %}
 
-            {% if products.has_next %}
-                <a href="?category={{ selected_category }}&price={{ selected_price }}&sort={{ selected_sort }}&page={{ products.next_page_number }}">&raquo;</a>
-            {% endif %}
-        </div>
+                {% for num in products.paginator.page_range %}
+                {% if products.number == num %}
+                <span class="active">{{ num }}</span>
+                {% else %}
+                <a
+                    href="?category={{ selected_category.id }}&price={{ selected_price }}&sort={{ selected_sort }}&page={{ num }}">{{num }}</a>
+                {% endif %}
+                {% endfor %}
+
+                {% if products.has_next %}
+                <a
+                    href="?category={{ selected_category }}&price={{ selected_price }}&sort={{ selected_sort }}&page={{ products.next_page_number }}">&raquo;</a>
+                {% endif %}
+            </div>
 
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Elegant Fashion</h3>
-                    <p>Zamonaviy moda dunyosidagi eng yaxshi tanlov. Sifat va uslub birligi.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Tezkor Havolalar</h4>
-                    <ul>
-                        <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
-                        <li><a href="{% url 'product' %}">Mahsulotlar</a></li>
-                        <li><a href="{% url 'about' %}">Biz haqimizda</a></li>
-                        <li><a href="{% url 'contact' %}">Aloqa</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Kategoriyalar</h4>
-                    <ul>
-                        <li><a href="products.html?category=women">Ayollar kiyimi</a></li>
-                        <li><a href="products.html?category=men">Erkaklar kiyimi</a></li>
-                        <li><a href="products.html?category=accessories">Aksessuarlar</a></li>
-                        <li><a href="products.html?category=shoes">Poyabzallar</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Aloqa Ma'lumotlari</h4>
-                    <div class="contact-info">
-                        <p><i class="fas fa-map-marker-alt"></i> Tashkent, O'zbekiston</p>
-                        <p><i class="fas fa-phone"></i> +998 90 123 45 67</p>
-                        <p><i class="fas fa-envelope"></i> info@elegantfashion.uz</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Elegant Fashion. Barcha huquqlar himoyalangan.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-    <script src="products.js"></script>
-</body>
-</html>
+    {% endblock %}

@@ -1,0 +1,121 @@
+{% load static %} {% load tags %}
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegant Fashion - Zamonaviy Moda</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/additional-styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h2>Elegant Fashion</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}" class="nav-link">Bosh sahifa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'product' %}" class="nav-link">Mahsulotlar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'about' %}" class="nav-link">Biz haqimizda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'contact' %}" class="nav-link">Aloqa</a>
+                    </li>
+                </ul>
+                <div class="nav-icons">
+                    <i class="fas fa-search"></i>
+                    {% if user.is_authenticated %}
+                    <i class="fas fa-user"></i> {{ request.user.username }}
+                    <a href="{% url 'cart' %}" class="cart-link">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="{% url 'logout' %}" class="cart-link">
+
+                        Chiqish
+                    </a>
+                    <a href="{% url 'likes' %}" class="cart-link"><i class="fas fa-heart"></i> <span class="cart-count">{{ request.user|likes_count }}</span></a>
+                    {% else %}
+                    <a href="{% url 'login' %}"><i class="fas fa-user"></i></a>
+                    {% endif %}
+
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Elegant Fashion</h3>
+                    <p>Zamonaviy moda dunyosidagi eng yaxshi tanlov. Sifat va uslub birligi.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Tezkor Havolalar</h4>
+                    <ul>
+                        <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
+                        <li><a href="{% url 'product' %}">Kolleksiyalar</a></li>
+                        <li><a href="{% url 'about' %}">Biz haqimizda</a></li>
+                        <li><a href="{% url 'contact' %}">Aloqa</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Kategoriyalar</h4>
+                    <ul>
+                        {% for category in categories %}
+                        <li><a href="{% url 'product' %}?category={{ category.id }}">{{ category.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Aloqa Ma'lumotlari</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Tashkent, O'zbekiston</p>
+                        <p><i class="fas fa-phone"></i> +998 90 123 45 67</p>
+                        <p><i class="fas fa-envelope"></i> info@elegantfashion.uz</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Elegant Fashion. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

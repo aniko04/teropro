@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .wishlist-container {
+        padding: 50px 0;
+        background-color: #f8f9fa;
+    }
+
+    .wishlist-title {
+        font-weight: 700;
+        color: #333;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .product-card {
+        background: #fff;
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+    }
+
+    .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-image {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .product-image img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+
+    .product-card:hover .product-image img {
+        transform: scale(1.1);
+    }
+
+    .product-card .card-body {
+        padding: 25px;
+        text-align: center;
+    }
+
+    .product-card .card-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .product-card .card-text {
+        color: #666;
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+
+    .product-actions {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .product-actions .action-btn {
+        background-color: rgba(255, 255, 255, 0.9);
+        color: #333;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: background-color 0.3s, color 0.3s;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-actions .action-btn:hover {
+        background-color: #e83e8c;
+        color: #fff;
+    }
+
+    .btn-details {
+        background: linear-gradient(45deg, #e83e8c, #ff8c9a);
+        border: none;
+        color: white;
+        padding: 10px 25px;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-details:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(232, 62, 140, 0.3);
+    }
+
+    .empty-wishlist {
+        padding: 80px 0;
+        text-align: center;
+    }
+
+    .empty-wishlist i {
+        font-size: 80px;
+        color: #e83e8c;
+        margin-bottom: 20px;
+    }
+
+    .empty-wishlist p {
+        font-size: 1.2rem;
+        color: #555;
+        margin-bottom: 30px;
+    }
+</style>
+
+<div class="container wishlist-container">
+    
+<br><br>
+    <h2 class="text-center mb-5 wishlist-title">Mening Sevimli Mahsulotlarim</h2>
+    {% if liked_products %}
+    <div class="row">
+        {% for product in liked_products %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card product-card h-100">
+                <div class="product-image">
+                    <img src="{{ product.main_image.url }}" class="card-img-top" alt="{{ product.name }}">
+                    <div class="product-actions">
+                       <a href="{% url 'like_product' product.id  %}?path={{ request.path }}" class="action-btn"> <i class="fas fa-times"></i> </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text mb-3">{{ product.current_price }} so'm</p>
+                    <a href="{% url 'product_details' product.id %}" class="btn btn-details">Batafsil</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-wishlist">
+        <i class="far fa-heart"></i>
+        <p>Sevimlilar ro'yxatingiz hozircha bo'sh.</p>
+        <a href="{% url 'product' %}" class="btn btn-details">Do'konga o'tish</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

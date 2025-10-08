@@ -21,12 +21,16 @@ class Product(models.Model):
     producer = models.ForeignKey('Producer', on_delete=models.CASCADE, null=True)
     guarantee = models.IntegerField(null=True, blank=True)
     content = RichTextField(blank=True, null=True)
+    top = models.BooleanField(default=False)
+    
 
     def __str__(self):
         return self.name
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
+    description = models.TextField(null=True, blank=True)
+    image = models.ImageField(upload_to='', null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -67,3 +71,10 @@ class Producer(models.Model):
 
     def __str__(self):
         return self.name
+
+class Like(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username

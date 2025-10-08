@@ -1,53 +1,5 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="uz">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elegant Fashion - Zamonaviy Moda</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/additional-styles.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="nav-logo">
-                    <h2>Elegant Fashion</h2>
-                </div>
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="{% url 'home' %}" class="nav-link">Bosh sahifa</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'product' %}" class="nav-link">Mahsulotlar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'about' %}" class="nav-link">Biz haqimizda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'contact' %}" class="nav-link">Aloqa</a>
-                    </li>
-                </ul>
-                <div class="nav-icons">
-                    <i class="fas fa-search"></i>
-                    <i class="fas fa-user"></i>
-                    <a href="{% url 'cart' %}" class="cart-link">
-                        <i class="fas fa-shopping-bag"></i>
-                        <span class="cart-count">0</span>
-                    </a>
-                </div>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-            </div>
-        </nav>
-    </header>
+{% extends 'base.html' %}{% load static %} {% load tags %}
+{% block content %}
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -73,47 +25,27 @@
             </div>
             
             <div class="collections-grid">
+
+                {% for category in categories %}
                 <div class="collection-card">
                     <div class="card-image">
-                        <div class="placeholder-img women"></div>
+                        <div class="placeholder-img women">
+                            <img src="{% if category.image %}{{ category.image.url }}{% else %}default-image.jpg{% endif %}" alt="">
+                        </div>
                         <div class="card-overlay">
-                            <a href="products.html" class="overlay-btn">Ko'rish</a>
+                            <a href="{% url 'product' %}?category={{ category.id }}" class="overlay-btn">Ko'rish</a>
                         </div>
                     </div>
                     <div class="card-content">
-                        <h3>Ayollar Kolleksiyasi</h3>
-                        <p>Zamonaviy va nafis dizaynlar</p>
+                        <h3>{{ category.name }}</h3>
+                        <p>{{ category.description }}</p>
                         <span class="price">$299 dan boshlab</span>
                     </div>
                 </div>
+                {% endfor %}
 
-                <div class="collection-card">
-                    <div class="card-image">
-                        <div class="placeholder-img men"></div>
-                        <div class="card-overlay">
-                            <a href="products.html" class="overlay-btn">Ko'rish</a>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Erkaklar Kolleksiyasi</h3>
-                        <p>Klassik va zamonaviy uslublar</p>
-                        <span class="price">$199 dan boshlab</span>
-                    </div>
-                </div>
-
-                <div class="collection-card">
-                    <div class="card-image">
-                        <div class="placeholder-img accessories"></div>
-                        <div class="card-overlay">
-                            <a href="products.html" class="overlay-btn">Ko'rish</a>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>Aksessuarlar</h3>
-                        <p>Mukammal qo'shimchalar</p>
-                        <span class="price">$49 dan boshlab</span>
-                    </div>
-                </div>
+              
+                
             </div>
         </div>
     </section>
@@ -122,23 +54,27 @@
     <section class="products">
         <div class="container">
             <div class="section-header">
-                <h2>Yangi Mahsulotlar</h2>
+                <h2>Top Mahsulotlar</h2>
                 <p>Eng so'nggi qo'shilgan mahsulotlarimiz bilan tanishing</p>
             </div>
             
             <div class="products-grid">
+                {% for product in products %}
+                {% if product.count > 0 %}
                 <div class="product-card">
                     <div class="product-image">
-                        <div class="placeholder-product product1"></div>
-                        <div class="product-badge">Yangi</div>
+                        <div class="placeholder-product product1">
+                            <img src="{{ product.main_image.url }}" alt="">
+                        </div>
+                        <div class="product-badge">{{ product.status }}</div>
                         <div class="product-actions">
-                            <button class="action-btn"><i class="fas fa-heart"></i></button>
-                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                            <a href="{% url 'like_product' product.id  %}?path={{ request.path }}" class="action-btn">{% if user.is_authenticated and product|in_likes:request.user %} <i class="fas fa-heart"></i>{% else %} <i class="far fa-heart"></i> {% endif %} </a>
+                            <a class="action-btn" href="{% url 'product_details' product.id %}" ><i class="fas fa-eye"></i></a>
                             <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
                         </div>
                     </div>
                     <div class="product-info">
-                        <h4>Elegant Dress</h4>
+                        <h4>{{ product.name }}</h4>
                         <div class="product-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -147,85 +83,14 @@
                             <i class="far fa-star"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$259</span>
-                            <span class="old-price">$329</span>
+                            <span class="current-price">${{ product.current_price }}</span>
+                            <span class="old-price">${{ product.old_price }}</span>
                         </div>
                     </div>
                 </div>
-
-                <div class="product-card">
-                    <div class="product-image">
-                        <div class="placeholder-product product2"></div>
-                        <div class="product-actions">
-                            <button class="action-btn"><i class="fas fa-heart"></i></button>
-                            <button class="action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h4>Classic Suit</h4>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">$499</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">
-                        <div class="placeholder-product product3"></div>
-                        <div class="product-badge sale">Chegirma</div>
-                        <div class="product-actions">
-                            <button class="action-btn"><i class="fas fa-heart"></i></button>
-                            <button class="action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h4>Casual Wear</h4>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">$149</span>
-                            <span class="old-price">$199</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">
-                        <div class="placeholder-product product4"></div>
-                        <div class="product-actions">
-                            <button class="action-btn"><i class="fas fa-heart"></i></button>
-                            <button class="action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h4>Designer Bag</h4>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">$89</span>
-                        </div>
-                    </div>
-                </div>
+                {% endif %}
+                {% endfor %}
+               
             </div>
         </div>
     </section>
@@ -275,56 +140,4 @@
     </section>
 
     <!-- Footer -->
-    <footer id="contact" class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Elegant Fashion</h3>
-                    <p>Zamonaviy moda dunyosidagi eng yaxshi tanlov. Sifat va uslub birligi.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Tezkor Havolalar</h4>
-                    <ul>
-                        <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
-                        <li><a href="{% url 'product' %}">Kolleksiyalar</a></li>
-                        <li><a href="{% url 'about' %}">Biz haqimizda</a></li>
-                        <li><a href="{% url 'contact' %}">Aloqa</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Kategoriyalar</h4>
-                    <ul>
-                        <li><a href="#">Ayollar kiyimi</a></li>
-                        <li><a href="#">Erkaklar kiyimi</a></li>
-                        <li><a href="#">Aksessuarlar</a></li>
-                        <li><a href="#">Poyabzallar</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Aloqa Ma'lumotlari</h4>
-                    <div class="contact-info">
-                        <p><i class="fas fa-map-marker-alt"></i> Tashkent, O'zbekiston</p>
-                        <p><i class="fas fa-phone"></i> +998 90 123 45 67</p>
-                        <p><i class="fas fa-envelope"></i> info@elegantfashion.uz</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Elegant Fashion. Barcha huquqlar himoyalangan.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
+ {% endblock %}  
