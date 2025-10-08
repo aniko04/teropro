@@ -65,46 +65,49 @@
     </section>
 
     <!-- Filter Section -->
-    <section class="filter-section">
-        <div class="container">
-            <div class="filters">
+<section>  
+<section class="filter-section">
+    <div class="container">
+        <div class="filters">
+            <form method="get" action="{% url 'product' %}">
                 <div class="filter-group">
                     <label>Kategoriya:</label>
-                    <select id="categoryFilter">
+                    <select name="category" id="categoryFilter" onchange="this.form.submit()">
                         <option value="">Barchasi</option>
-                        <option value="women">Ayollar kiyimi</option>
-                        <option value="men">Erkaklar kiyimi</option>
-                        <option value="accessories">Aksessuarlar</option>
-                        <option value="shoes">Poyabzal</option>
+                        {% for c in categories %}
+                            <option value="{{ c.id }}" {% if selected_category and selected_category.id == c.id %}selected{% endif %}>
+                                {{ c.name }}
+                            </option>
+                        {% endfor %}
                     </select>
                 </div>
+
                 <div class="filter-group">
                     <label>Narx oralig'i:</label>
-                    <select id="priceFilter">
+                    <select name="price" id="priceFilter" onchange="this.form.submit()">
                         <option value="">Barchasi</option>
-                        <option value="0-100">$0 - $100</option>
-                        <option value="100-300">$100 - $300</option>
-                        <option value="300-500">$300 - $500</option>
-                        <option value="500+">$500+</option>
+                        <option value="0-100" {% if selected_price == "0-100" %}selected{% endif %}>$0 - $100</option>
+                        <option value="100-300" {% if selected_price == "100-300" %}selected{% endif %}>$100 - $300</option>
+                        <option value="300-500" {% if selected_price == "300-500" %}selected{% endif %}>$300 - $500</option>
+                        <option value="500+" {% if selected_price == "500+" %}selected{% endif %}>$500+</option>
                     </select>
                 </div>
+
                 <div class="filter-group">
                     <label>Saralash:</label>
-                    <select id="sortFilter">
+                    <select name="sort" id="sortFilter" onchange="this.form.submit()">
                         <option value="">Standart</option>
-                        <option value="price-low">Narx: Pastdan yuqoriga</option>
-                        <option value="price-high">Narx: Yuqoridan pastga</option>
-                        <option value="name">Nomi bo'yicha</option>
-                        <option value="newest">Eng yangi</option>
+                        <option value="price-low" {% if selected_sort == "price-low" %}selected{% endif %}>Narx: Pastdan yuqoriga</option>
+                        <option value="price-high" {% if selected_sort == "price-high" %}selected{% endif %}>Narx: Yuqoridan pastga</option>
+                        <option value="name" {% if selected_sort == "name" %}selected{% endif %}>Nomi bo'yicha</option>
+                        <option value="newest" {% if selected_sort == "newest" %}selected{% endif %}>Eng yangi</option>
                     </select>
                 </div>
-                <div class="view-toggle">
-                    <button class="view-btn active" data-view="grid"><i class="fas fa-th"></i></button>
-                    <button class="view-btn" data-view="list"><i class="fas fa-list"></i></button>
-                </div>
-            </div>
+            </form>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Products Section -->
     <section class="products-page">
@@ -144,13 +147,24 @@
             </div>
 
             <!-- Pagination -->
-            <div class="pagination">
-                <button class="page-btn prev" disabled><i class="fas fa-chevron-left"></i></button>
-                <button class="page-btn active">1</button>
-                <button class="page-btn">2</button>
-                <button class="page-btn">3</button>
-                <button class="page-btn next"><i class="fas fa-chevron-right"></i></button>
-            </div>
+         <div class="pagination">
+            {% if products.has_previous %}
+                <a href="?category={{ selected_category }}&price={{ selected_price }}&sort={{ selected_sort }}&page={{ products.previous_page_number }}">&laquo;</a>
+            {% endif %}
+
+            {% for num in products.paginator.page_range %}
+                {% if products.number == num %}
+                    <span class="active">{{ num }}</span>
+                {% else %}
+                    <a href="?category={{ selected_category }}&price={{ selected_price }}&sort={{ selected_sort }}&page={{ num }}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if products.has_next %}
+                <a href="?category={{ selected_category }}&price={{ selected_price }}&sort={{ selected_sort }}&page={{ products.next_page_number }}">&raquo;</a>
+            {% endif %}
+        </div>
+
         </div>
     </section>
 
