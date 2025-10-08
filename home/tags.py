@@ -1,6 +1,6 @@
 from django import template
 
-from home.models import Like
+from home.models import Category, Like
 
 register = template.Library()
 
@@ -51,3 +51,8 @@ def likes_count(user):
     if user.is_authenticated:
         return user.like_set.count()
     return 0
+
+
+@register.filter
+def categories(user):
+    return Category.objects.all()
