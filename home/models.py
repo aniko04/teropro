@@ -1,6 +1,7 @@
 
 from django.db import models
 from ckeditor.fields import RichTextField
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 class Product(models.Model):
@@ -76,5 +77,44 @@ class Like(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.user.username
+
+class Cart(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.product.name}"
+    
+    def get_total_price(self):
+        return self.product.current_price * self.quantity
+    
+    def get_discount_amount(self):
+        """Chegirma miqdorini hisoblab beradi"""
+        if self.product.old_price and self.product.old_price > 0:
+            discount_per_item = self.product.old_price - self.product.current_price
+            return discount_per_item * self.quantity
+        return 0
+    
+    def get_discount_percent(self):
+        """Chegirma foizini hisoblab beradi"""
+        if self.product.old_price and self.product.old_price > 0:
+            discount_percent = (self.product.current_price / self.product.old_price) * 100 - 100
+            return abs(discount_percent)  # Musbat qiymat qaytarish
+        return 0
+    
+class ProductView(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    comment = models.TextField(null=True, blank=True)
+    createddate = models.DateTimeField(auto_now_add=True)
+    rate = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
+        default=0,
+        help_text="1 dan 5 gacha yulduz bering"
+    )
     def __str__(self):
         return self.user.username

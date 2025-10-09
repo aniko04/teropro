@@ -50,14 +50,23 @@
                     </div>
                     <div class="product-rating">
                         <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
+                            {{ product.grade|star_rating_html|safe }}
                         </div>
                         <span class="rating-text">({{ product.grade }} baho)</span>
                         <a href="#reviews" class="reviews-link">Barcha baholarni ko'rish</a>
+                    </div>
+
+                    <!-- Product Statistics -->
+                    <div class="product-stats">
+                        <span class="likes-stats">
+                            <i class="fas fa-heart"></i>
+                            {{ product|product_likes_count }} kishi yoqtirdi
+                        </span> 
+                        <br>
+                        <span class="cart-stats">
+                            <i class="fas fa-shopping-cart"></i>
+                            {{ product|product_cart_count }} kishi savat qildi
+                        </span>
                     </div>
 
                     <div class="product-price">
@@ -104,10 +113,10 @@
 
                     <!-- Action Buttons -->
                     <div class="product-actions">
-                        <button class="add-to-cart-btn">
+                        <a href="{% url 'add_to_cart' product.id %}?path={{ request.path }}" class="add-to-cart-btn">
                             <i class="fas fa-shopping-cart"></i>
                             Savatga Qo'shish
-                        </button>
+                        </a>
                         <button class="wishlist-btn">
                             <i class="far fa-heart"></i>
                         </button>
@@ -152,7 +161,20 @@
 
             <div class="tabs-content">
                 <div class="tab-pane active" id="description">
-                    {{ product.content|safe }}
+                    {% if product.content %}
+                        {{ product.content|safe }}
+                    {% else %}
+                        <p>{{ product.description }}</p>
+                        <br>
+                        <h4>Mahsulot haqida qo'shimcha ma'lumot:</h4>
+                        <p>Bu mahsulot yuqori sifatli materiallardan tayyorlangan bo'lib, uzoq muddat xizmat qiladi.</p>
+                        <ul>
+                            <li>Sifatli materiallar ishlatilgan</li>
+                            <li>Zamonaviy dizayn</li>
+                            <li>Ishonchli brend</li>
+                            <li>Kafolat beriladi</li>
+                        </ul>
+                    {% endif %}
                 </div>
 
                 <div class="tab-pane" id="specifications">
@@ -189,107 +211,133 @@
 
                 <div class="tab-pane" id="reviews">
                     <div class="reviews-section">
+                        <!-- Baholar xulosasi -->
                         <div class="reviews-summary">
                             <div class="rating-overview">
                                 <div class="overall-rating">
-                                    <span class="rating-number">4.2</span>
+                                    <span class="rating-number">{{ average_rating }}</span>
                                     <div class="rating-stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
+                                        {{ average_rating|star_rating_html|safe }}
                                     </div>
-                                    <span class="total-reviews">24 baho asosida</span>
+                                    <span class="total-reviews">{{ total_reviews_count }} baho asosida</span>
                                 </div>
                                 <div class="rating-breakdown">
                                     <div class="rating-bar">
                                         <span>5 yulduz</span>
                                         <div class="bar">
-                                            <div class="fill" style="width: 60%"></div>
+                                            <div class="fill" style="width: {{ rating_percentages.5 }}%"></div>
                                         </div>
-                                        <span>12</span>
+                                        <span>{{ rating_counts.5 }}</span>
                                     </div>
                                     <div class="rating-bar">
                                         <span>4 yulduz</span>
                                         <div class="bar">
-                                            <div class="fill" style="width: 30%"></div>
+                                            <div class="fill" style="width: {{ rating_percentages.4 }}%"></div>
                                         </div>
-                                        <span>8</span>
+                                        <span>{{ rating_counts.4 }}</span>
                                     </div>
                                     <div class="rating-bar">
                                         <span>3 yulduz</span>
                                         <div class="bar">
-                                            <div class="fill" style="width: 8%"></div>
+                                            <div class="fill" style="width: {{ rating_percentages.3 }}%"></div>
                                         </div>
-                                        <span>2</span>
+                                        <span>{{ rating_counts.3 }}</span>
                                     </div>
                                     <div class="rating-bar">
                                         <span>2 yulduz</span>
                                         <div class="bar">
-                                            <div class="fill" style="width: 4%"></div>
+                                            <div class="fill" style="width: {{ rating_percentages.2 }}%"></div>
                                         </div>
-                                        <span>1</span>
+                                        <span>{{ rating_counts.2 }}</span>
                                     </div>
                                     <div class="rating-bar">
                                         <span>1 yulduz</span>
                                         <div class="bar">
-                                            <div class="fill" style="width: 4%"></div>
+                                            <div class="fill" style="width: {{ rating_percentages.1 }}%"></div>
                                         </div>
-                                        <span>1</span>
+                                        <span>{{ rating_counts.1 }}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Baholar ro'yxati -->
                         <div class="reviews-list">
-                            <div class="review-item">
-                                <div class="review-header">
-                                    <div class="reviewer-info">
-                                        <div class="reviewer-avatar">A</div>
-                                        <div class="reviewer-details">
-                                            <h4>Aziza M.</h4>
-                                            <span class="review-date">15 Oktyabr 2025</span>
+                            {% if all_reviews %}
+                                {% for review in all_reviews %}
+                                    <div class="review-item">
+                                        <div class="review-header">
+                                            <div class="reviewer-info">
+                                                <div class="reviewer-avatar">
+                                                    {{ review.user.username|first|upper }}
+                                                </div>
+                                                <div class="reviewer-details">
+                                                    <h4>{{ review.user.username }}</h4>
+                                                    <span class="review-date">{{ review.createddate|date:"d F Y" }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="review-rating">
+                                                {% if review.rate > 0 %}
+                                                    {{ review.rate|star_rating_html|safe }}
+                                                {% else %}
+                                                    <span class="no-rating">Baho berilmagan</span>
+                                                {% endif %}
+                                            </div>
                                         </div>
+                                        {% if review.comment %}
+                                            <div class="review-content">
+                                                <p>{{ review.comment }}</p>
+                                            </div>
+                                        {% endif %}
                                     </div>
-                                    <div class="review-rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="no-reviews">
+                                    <p>Hali baholar yo'q. Birinchi bo'lib baho bering!</p>
                                 </div>
-                                <div class="review-content">
-                                    <p>Juda chiroyli va sifatli mahsulot! Material va tikuv juda yaxshi. Tavsiya
-                                        qilaman!</p>
-                                </div>
-                            </div>
-
-                            <div class="review-item">
-                                <div class="review-header">
-                                    <div class="reviewer-info">
-                                        <div class="reviewer-avatar">M</div>
-                                        <div class="reviewer-details">
-                                            <h4>Malika S.</h4>
-                                            <span class="review-date">12 Oktyabr 2025</span>
-                                        </div>
-                                    </div>
-                                    <div class="review-rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </div>
-                                </div>
-                                <div class="review-content">
-                                    <p>O'lchami to'g'ri keldi, material yaxshi. Faqat rang biroz boshqacha edi.</p>
-                                </div>
-                            </div>
+                            {% endif %}
                         </div>
 
-                        <button class="load-more-reviews">Ko'proq ko'rish</button>
+                        {% if all_reviews.count > 5 %}
+                            <button class="load-more-reviews">Ko'proq ko'rish</button>
+                        {% endif %}
+
+                        <!-- Rating berish formi -->
+                        <div class="rating-form-section">
+                            <h4>Mahsulotga bahoingizni bering</h4>
+                            {% if user.is_authenticated %}
+                                <form action="{% url 'rate_product' product.id %}" method="POST" class="rating-form">
+                                    {% csrf_token %}
+                                    <div class="rating-input">
+                                        <label>Ratingingiz:</label>
+                                        <div class="star-rating">
+                                            {% for i in "54321" %}
+                                                <input type="radio" name="rating" value="{{ i }}" id="star{{ i }}"
+                                                       {% if product|user_rating:user == i|add:0 %}checked{% endif %}>
+                                                <label for="star{{ i }}" class="star-label">
+                                                    <i class="fas fa-star"></i>
+                                                </label>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div class="comment-input">
+                                        <label for="comment">Fikr-mulohazangiz:</label>
+                                        <textarea name="comment" id="comment" rows="3" placeholder="Mahsulot haqida fikringizni yozing...">{{ product|user_comment:user }}</textarea>
+                                    </div>
+                                    <button type="submit" class="submit-rating-btn">
+                                        {% if product|user_rating:user > 0 %}
+                                            Ratingni Yangilash
+                                        {% else %}
+                                            Rating Berish
+                                        {% endif %}
+                                    </button>
+                                </form>
+                            {% else %}
+                                <p class="login-message">
+                                    Rating berish uchun <a href="{% url 'login' %}">tizimga kiring</a>
+                                </p>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
 
@@ -458,4 +506,7 @@
             </div>
         </div>
     </section>
+
+    <!-- External JavaScript for Product Functionality -->
+    <script src="{% static 'js/product-tabs.js' %}"></script>
  {% endblock %}  

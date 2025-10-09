@@ -68,13 +68,24 @@
                         </div>
                         <div class="product-badge">{{ product.status }}</div>
                         <div class="product-actions">
-                            <a href="{% url 'like_product' product.id  %}?path={{ request.path }}" class="action-btn">{% if user.is_authenticated and product|in_likes:request.user %} <i class="fas fa-heart"></i>{% else %} <i class="far fa-heart"></i> {% endif %} </a>
+                            <a href="{% url 'like_product' product.id  %}?path={{ request.get_full_path|urlencode }}" class="action-btn">{% if user.is_authenticated and product|in_likes:request.user %} <i class="fas fa-heart"></i>{% else %} <i class="far fa-heart"></i> {% endif %} </a>
                             <a class="action-btn" href="{% url 'product_details' product.id %}" ><i class="fas fa-eye"></i></a>
-                            <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                            {% if user.is_authenticated and product|in_cart:request.user %}
+                                <a href="{% url 'add_to_cart' product.id %}?path={{ request.get_full_path|urlencode }}" class="action-btn add-to-cart cart-active">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                            {% else %}
+                                <a href="{% url 'add_to_cart' product.id %}?path={{ request.get_full_path|urlencode }}" class="action-btn add-to-cart">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="product-info">
                         <h4>{{ product.name }}</h4>
+                        {% if user.is_authenticated and product|in_cart:request.user %}
+                            <small class="cart-indicator">✓ Savatga tashlandi</small>
+                        {% endif %}
                         <div class="product-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>

@@ -1,5 +1,227 @@
 /* Additional CSS for Multi-Page Structure */
 
+/* Messages Styles */
+.messages-container {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 1000;
+    max-width: 400px;
+}
+
+.alert {
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    animation: slideIn 0.3s ease-out;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-left: 4px solid #28a745;
+    color: #155724;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    border-left: 4px solid #ffc107;
+    color: #856404;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    border-left: 4px solid #dc3545;
+    color: #721c24;
+}
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: inherit;
+    opacity: 0.7;
+}
+
+.close-btn:hover {
+    opacity: 1;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Cart Icon Active State - Buyurtma berilgan mahsulotlar uchun QORA ICON */
+.cart-active {
+    background-color: #000000 !important;
+    background: #000000 !important;
+    color: #ffffff !important;
+}
+
+.cart-active i {
+    color: #ffffff !important;
+}
+
+.action-btn.cart-active {
+    background-color: #000000 !important;
+    background: #000000 !important; 
+    color: #ffffff !important;
+    border: 2px solid #000000 !important;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7) !important;
+}
+
+.action-btn.cart-active i {
+    color: #ffffff !important;
+    font-weight: bold !important;
+}
+
+.action-btn.cart-active:hover {
+    background-color: #333333 !important;
+    background: #333333 !important;
+    border-color: #333333 !important;
+}
+
+/* Yanada aniq selector */
+.product-actions .action-btn.cart-active,
+.products-grid .action-btn.cart-active {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+/* Cart Text Indicator */
+.cart-indicator {
+    color: #28a745 !important;
+    font-weight: bold !important;
+    font-size: 12px !important;
+    margin-top: 5px !important;
+    display: block !important;
+}
+
+/* Product Statistics */
+.product-stats {
+    margin: 15px 0;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.likes-stats, .cart-stats {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.likes-stats i {
+    color: #e74c3c;
+    font-size: 16px;
+}
+
+.cart-stats i {
+    color: #28a745;
+    font-size: 16px;
+}
+
+/* Clear Cart Button */
+.clear-cart-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.clear-cart-btn:hover {
+    background-color: #c82333;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.clear-cart-btn i {
+    font-size: 16px;
+}
+
+/* Cart Quantity Controls */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.qty-btn {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    color: #495057;
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.qty-btn:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+    color: #212529;
+    transform: scale(1.1);
+}
+
+.qty-btn.plus:hover {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+}
+
+.qty-btn.minus:hover {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+}
+
+.quantity-input {
+    width: 60px;
+    height: 35px;
+    text-align: center;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
 .pagination {
     display: flex;
     justify-content: center;
@@ -1726,4 +1948,201 @@
     .timeline-content {
         margin: 1rem 0 0 0;
     }
+}
+
+/* Rating Form Styles */
+.rating-form-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+}
+
+.rating-form-section h4 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.rating-form {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.rating-input {
+    margin-bottom: 1.5rem;
+}
+
+.rating-input label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-label {
+    font-size: 2rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* Yulduzcha rating to'g'ri ishlashi uchun */
+.star-rating input[type="radio"]:checked + .star-label {
+    color: #ffc107 !important;
+}
+
+.star-rating .star-label:hover {
+    color: #ffc107 !important;
+}
+
+/* Yulduzcha labellar */
+.star-rating .star-label {
+    display: inline-block;
+    font-size: 2rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    order: 1;
+}
+
+/* Radio input lar yashirin */
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+/* Hover effekti */
+.star-rating .star-label:hover,
+.star-rating .star-label:hover ~ .star-label {
+    color: #ffc107 !important;
+}
+
+/* Checked holatda */
+.star-rating input[type="radio"]:checked + .star-label,
+.star-rating input[type="radio"]:checked + .star-label ~ .star-label {
+    color: #ffc107 !important;
+}
+
+.comment-input {
+    margin-bottom: 1.5rem;
+}
+
+.comment-input label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.comment-input textarea {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.3s ease;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+    box-sizing: border-box;
+}
+
+.comment-input textarea:focus {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
+}
+
+.submit-rating-btn {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.submit-rating-btn:hover {
+    transform: translateY(-2px);
+}
+
+.login-message {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.login-message a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-message a:hover {
+    text-decoration: underline;
+}
+
+/* No rating style */
+.no-rating {
+    color: #999;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+/* No reviews style */
+.no-reviews {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    background: #f8f9fa;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.no-reviews p {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+/* Review item improvements */
+.review-item {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.review-item:hover {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.reviewer-avatar {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    color: white;
+    font-weight: bold;
 }

@@ -22,86 +22,67 @@
                 <!-- Cart Items -->
                 <div class="cart-items">
                     <div class="cart-header">
-                        <h2>Sizning Mahsulotlaringiz <span id="cartItemCount">(2 ta)</span></h2>
-                        <button class="clear-cart-btn">
+                        <h2>Sizning Mahsulotlaringiz <span id="cartItemCount">({% if cart_items %}{{ cart_items.count }}{% else %}0{% endif %} ta)</span></h2>
+                        <a href="{% url 'clear_cart' %}" class="clear-cart-btn" onclick="return confirm('Barcha mahsulotlarni o\'chirishga ishonchingiz komilmi? Bu amalni bekor qilib bo\'lmaydi!')">
                             <i class="fas fa-trash"></i>
                             Barchasini O'chirish
-                        </button>
+                        </a>
                     </div>
 
                     <div class="cart-items-list" id="cartItemsList">
-                        <!-- Cart Item 1 -->
-                        <div class="cart-item" data-id="1">
-                            <div class="item-image">
-                                <div class="placeholder-product product1"></div>
-                            </div>
-                            <div class="item-details">
-                                <h3 class="item-name">Elegant Dress</h3>
-                                <p class="item-category">Ayollar kiyimi</p>
-                                <div class="item-options">
-                                    <span>Rang: Ko'k</span>
-                                    <span>O'lcham: M</span>
+                        {% if cart_items %}
+                            {% for item in cart_items %}
+                            <div class="cart-item" data-id="{{ item.id }}">
+                                <div class="item-image">
+                                    {% if item.product.main_image %}
+                                        <img src="{{ item.product.main_image.url }}" alt="{{ item.product.name }}">
+                                    {% else %}
+                                        <div class="placeholder-product product1"></div>
+                                    {% endif %}
                                 </div>
-                                <div class="item-actions">
-                                    <button class="action-link wishlist">
-                                        <i class="fas fa-heart"></i>
-                                        Sevimlilar
-                                    </button>
-                                    <button class="action-link remove" data-id="1">
-                                        <i class="fas fa-trash"></i>
-                                        O'chirish
-                                    </button>
+                                <div class="item-details">
+                                    <h3 class="item-name">{{ item.product.name }}</h3>
+                                    <p class="item-category">{{ item.product.category.name }}</p>
+                                    <div class="item-options">
+                                        {% if item.product.colors.all %}
+                                            <span>Rang: {{ item.product.colors.all.0.name }}</span>
+                                        {% endif %}
+                                        {% if item.product.sizes.all %}
+                                            <span>O'lcham: {{ item.product.sizes.all.0.name }}</span>
+                                        {% endif %}
+                                    </div>
+                                    <div class="item-actions">
+                                        <a href="{% url 'likes' %}" class="action-link wishlist">
+                                            <i class="fas fa-heart"></i>
+                                            Sevimlilar
+                                        </a>
+                                        <a href="{% url 'remove_from_cart' item.id %}" class="action-link remove" onclick="return confirm('Mahsulotni o\'chirishga ishonchingiz komilmi?')">
+                                            <i class="fas fa-trash"></i>
+                                            O'chirish
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="item-quantity">
-                                <label>Miqdor:</label>
-                                <div class="quantity-control">
-                                    <button class="qty-btn minus" data-id="1">-</button>
-                                    <input type="number" value="1" min="1" class="quantity-input" data-id="1">
-                                    <button class="qty-btn plus" data-id="1">+</button>
+                                <div class="item-quantity">
+                                    <label>Miqdor:</label>
+                                    <div class="quantity-control">
+                                        <a href="{% url 'decrease_cart_quantity' item.id %}" class="qty-btn minus">-</a>
+                                        <input type="number" value="{{ item.quantity }}" min="1" class="quantity-input" readonly>
+                                        <a href="{% url 'increase_cart_quantity' item.id %}" class="qty-btn plus">+</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="item-price">
-                                <span class="current-price">$259</span>
-                                <span class="old-price">$329</span>
-                            </div>
-                        </div>
-
-                        <!-- Cart Item 2 -->
-                        <div class="cart-item" data-id="2">
-                            <div class="item-image">
-                                <div class="placeholder-product product4"></div>
-                            </div>
-                            <div class="item-details">
-                                <h3 class="item-name">Designer Bag</h3>
-                                <p class="item-category">Aksessuarlar</p>
-                                <div class="item-options">
-                                    <span>Rang: Qora</span>
-                                    <span>Material: Teri</span>
-                                </div>
-                                <div class="item-actions">
-                                    <button class="action-link wishlist">
-                                        <i class="fas fa-heart"></i>
-                                        Sevimlilar
-                                    </button>
-                                    <button class="action-link remove" data-id="2">
-                                        <i class="fas fa-trash"></i>
-                                        O'chirish
-                                    </button>
+                                <div class="item-price">
+                                    <span class="current-price">${{ item.product.current_price }}</span>
+                                    {% if item.product.old_price %}
+                                        <span class="old-price">${{ item.product.old_price }}</span>
+                                    {% endif %}
                                 </div>
                             </div>
-                            <div class="item-quantity">
-                                <label>Miqdor:</label>
-                                <div class="quantity-control">
-                                    <button class="qty-btn minus" data-id="2">-</button>
-                                    <input type="number" value="1" min="1" class="quantity-input" data-id="2">
-                                    <button class="qty-btn plus" data-id="2">+</button>
-                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="empty-cart-message">
+                                <p>Savatingiz bo'sh</p>
                             </div>
-                            <div class="item-price">
-                                <span class="current-price">$89</span>
-                            </div>
-                        </div>
+                        {% endif %}
                     </div>
 
                     <!-- Continue Shopping -->
@@ -120,22 +101,24 @@
                         
                         <div class="summary-line">
                             <span>Mahsulotlar narxi:</span>
-                            <span id="subtotal">$348</span>
+                            <span id="subtotal">${{ subtotal|default:0 }}</span>
                         </div>
                         
+                        {% if total_discount > 0 %}
                         <div class="summary-line">
                             <span>Chegirma:</span>
-                            <span id="discount" class="discount-amount">-$70</span>
+                            <span id="discount" class="discount-amount">-${{ total_discount }}</span>
                         </div>
+                        {% endif %}
                         
                         <div class="summary-line">
                             <span>Yetkazib berish:</span>
-                            <span id="shipping">$15</span>
+                            <span id="shipping">${{ shipping }}</span>
                         </div>
                         
                         <div class="summary-line total">
                             <span>Jami:</span>
-                            <span id="total">$293</span>
+                            <span id="total">${{ final_total|default:shipping }}</span>
                         </div>
 
                         <!-- Promo Code -->
