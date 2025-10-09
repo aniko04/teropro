@@ -50,9 +50,9 @@
                     </div>
                     <div class="product-rating">
                         <div class="stars">
-                            {{ product.grade|star_rating_html|safe }}
+                            {{ average_rating|star_rating_html|safe }}
                         </div>
-                        <span class="rating-text">({{ product.grade }} baho)</span>
+                        <span class="rating-text">({{ product|reviews_count }} baho)</span>
                         <a href="#reviews" class="reviews-link">Barcha baholarni ko'rish</a>
                     </div>
 

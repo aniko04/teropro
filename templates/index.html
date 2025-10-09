@@ -1,154 +1,160 @@
 {% extends 'base.html' %}{% load static %} {% load tags %}
 {% block content %}
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Zamonaviy Moda Dunyosi</h1>
-            <p class="hero-subtitle">Eng so'nggi fashion trendlari va yuqori sifatli kiyimlar</p>
-            <div class="hero-buttons">
-                <a href="{% url 'product' %}" class="hero-btn primary">Mahsulotlarni Ko'rish</a>
-                <a href="{% url 'about' %}" class="hero-btn secondary">Biz Haqimizda</a>
-            </div>
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">Zamonaviy Moda Dunyosi</h1>
+        <p class="hero-subtitle">Eng so'nggi fashion trendlari va yuqori sifatli kiyimlar</p>
+        <div class="hero-buttons">
+            <a href="{% url 'product' %}" class="hero-btn primary">Mahsulotlarni Ko'rish</a>
+            <a href="{% url 'about' %}" class="hero-btn secondary">Biz Haqimizda</a>
         </div>
-        <div class="hero-image">
-            <div class="hero-bg"></div>
+    </div>
+    <div class="hero-image">
+        <div class="hero-bg"></div>
+    </div>
+</section>
+
+<!-- Featured Collections -->
+<section id="collections" class="collections">
+    <div class="container">
+        <div class="section-header">
+            <h2>Mashhur Kolleksiyalar</h2>
+            <p>Eng yangi va trenddagi kiyimlarimizni kashf eting</p>
         </div>
-    </section>
 
-    <!-- Featured Collections -->
-    <section id="collections" class="collections">
-        <div class="container">
-            <div class="section-header">
-                <h2>Mashhur Kolleksiyalar</h2>
-                <p>Eng yangi va trenddagi kiyimlarimizni kashf eting</p>
-            </div>
-            
-            <div class="collections-grid">
+        <div class="collections-grid">
 
-                {% for category in categories %}
-                <div class="collection-card">
-                    <div class="card-image">
-                        <div class="placeholder-img women">
-                            <img src="{% if category.image %}{{ category.image.url }}{% else %}default-image.jpg{% endif %}" alt="">
-                        </div>
-                        <div class="card-overlay">
-                            <a href="{% url 'product' %}?category={{ category.id }}" class="overlay-btn">Ko'rish</a>
-                        </div>
+            {% for category in categories %}
+            <div class="collection-card">
+                <div class="card-image">
+                    <div class="placeholder-img women">
+                        <img src="{% if category.image %}{{ category.image.url }}{% else %}default-image.jpg{% endif %}"
+                            alt="">
                     </div>
-                    <div class="card-content">
-                        <h3>{{ category.name }}</h3>
-                        <p>{{ category.description }}</p>
-                        <span class="price">$299 dan boshlab</span>
+                    <div class="card-overlay">
+                        <a href="{% url 'product' %}?category={{ category.id }}" class="overlay-btn">Ko'rish</a>
                     </div>
                 </div>
-                {% endfor %}
-
-              
-                
+                <div class="card-content">
+                    <h3>{{ category.name }}</h3>
+                    <p>{{ category.description }}</p>
+                    <span class="price">${{ category.min_price }} dan boshlab</span>
+                </div>
             </div>
+            {% endfor %}
+
+
+
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Products Grid -->
-    <section class="products">
-        <div class="container">
-            <div class="section-header">
-                <h2>Top Mahsulotlar</h2>
-                <p>Eng so'nggi qo'shilgan mahsulotlarimiz bilan tanishing</p>
-            </div>
-            
-            <div class="products-grid">
-                {% for product in products %}
-                {% if product.count > 0 %}
-                <div class="product-card">
-                    <div class="product-image">
-                        <div class="placeholder-product product1">
-                            <img src="{{ product.main_image.url }}" alt="">
-                        </div>
-                        <div class="product-badge">{{ product.status }}</div>
-                        <div class="product-actions">
-                            <a href="{% url 'like_product' product.id  %}?path={{ request.get_full_path|urlencode }}" class="action-btn">{% if user.is_authenticated and product|in_likes:request.user %} <i class="fas fa-heart"></i>{% else %} <i class="far fa-heart"></i> {% endif %} </a>
-                            <a class="action-btn" href="{% url 'product_details' product.id %}" ><i class="fas fa-eye"></i></a>
-                            {% if user.is_authenticated and product|in_cart:request.user %}
-                                <a href="{% url 'add_to_cart' product.id %}?path={{ request.get_full_path|urlencode }}" class="action-btn add-to-cart cart-active">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
-                            {% else %}
-                                <a href="{% url 'add_to_cart' product.id %}?path={{ request.get_full_path|urlencode }}" class="action-btn add-to-cart">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </a>
-                            {% endif %}
-                        </div>
+<!-- Products Grid -->
+<section class="products">
+    <div class="container">
+        <div class="section-header">
+            <h2>Top Mahsulotlar</h2>
+            <p>Eng so'nggi qo'shilgan mahsulotlarimiz bilan tanishing</p>
+        </div>
+
+        <div class="products-grid">
+            {% for product in products %}
+            {% if product.count > 0 %}
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="placeholder-product product1">
+                        <img src="{{ product.main_image.url }}" alt="">
                     </div>
-                    <div class="product-info">
-                        <h4>{{ product.name }}</h4>
+                    <div class="product-badge">{{ product.status }}</div>
+                    <div class="product-actions">
+                        <a href="{% url 'like_product' product.id  %}?path={{ request.get_full_path|urlencode }}"
+                            class="action-btn">{% if user.is_authenticated and product|in_likes:request.user %} <i
+                                class="fas fa-heart"></i>{% else %} <i class="far fa-heart"></i> {% endif %} </a>
+                        <a class="action-btn" href="{% url 'product_details' product.id %}"><i
+                                class="fas fa-eye"></i></a>
                         {% if user.is_authenticated and product|in_cart:request.user %}
-                            <small class="cart-indicator">✓ Savatga tashlandi</small>
+                        <a href="{% url 'add_to_cart' product.id %}?path={{ request.get_full_path|urlencode }}"
+                            class="action-btn add-to-cart cart-active">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                        {% else %}
+                        <a href="{% url 'add_to_cart' product.id %}?path={{ request.get_full_path|urlencode }}"
+                            class="action-btn add-to-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
                         {% endif %}
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">${{ product.current_price }}</span>
-                            <span class="old-price">${{ product.old_price }}</span>
-                        </div>
                     </div>
                 </div>
-                {% endif %}
-                {% endfor %}
-               
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Bizning Hikoyamiz</h2>
-                    <p>Elegant Fashion 2020-yilda tashkil etilgan bo'lib, yuqori sifatli va zamonaviy kiyimlarni taqdim etishga ixtisoslashgan. Bizning maqsadimiz har bir mijozga o'zining shaxsiy uslubini topishda yordam berishdir.</p>
-                    <p>Biz eng yaxshi materiallar va eng so'nggi dizayn trendlaridan foydalanib, sifatli mahsulotlar ishlab chiqaramiz.</p>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <h3>1000+</h3>
-                            <p>Baxtli Mijozlar</p>
-                        </div>
-                        <div class="stat">
-                            <h3>500+</h3>
-                            <p>Mahsulotlar</p>
-                        </div>
-                        <div class="stat">
-                            <h3>50+</h3>
-                            <p>Brendlar</p>
-                        </div>
+                <div class="product-info">
+                    <h4>{{ product.name }}</h4>
+                    {% if user.is_authenticated and product|in_cart:request.user %}
+                    <small class="cart-indicator">✓ Savatga tashlandi</small>
+                    {% endif %}
+                    <div class="product-rating">
+                        {{ product|average_rating|star_rating_html|safe }}
+                        <span class="rating-count">({{ product|reviews_count }} baho)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">${{ product.current_price }}</span>
+                        <span class="old-price">${{ product.old_price }}</span>
                     </div>
                 </div>
-                <div class="about-image">
-                    <div class="placeholder-about"></div>
+            </div>
+            {% endif %}
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Bizning Hikoyamiz</h2>
+                <p>Elegant Fashion 2020-yilda tashkil etilgan bo'lib, yuqori sifatli va zamonaviy kiyimlarni taqdim
+                    etishga ixtisoslashgan. Bizning maqsadimiz har bir mijozga o'zining shaxsiy uslubini topishda yordam
+                    berishdir.</p>
+                <p>Biz eng yaxshi materiallar va eng so'nggi dizayn trendlaridan foydalanib, sifatli mahsulotlar ishlab
+                    chiqaramiz.</p>
+                <div class="about-stats">
+                    <div class="stat">
+                        <h3>1000+</h3>
+                        <p>Baxtli Mijozlar</p>
+                    </div>
+                    <div class="stat">
+                        <h3>500+</h3>
+                        <p>Mahsulotlar</p>
+                    </div>
+                    <div class="stat">
+                        <h3>50+</h3>
+                        <p>Brendlar</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="newsletter">
-        <div class="container">
-            <div class="newsletter-content">
-                <h2>Yangiliklardan Xabardor Bo'ling</h2>
-                <p>Eng so'nggi kolleksiyalar va maxsus takliflar haqida birinchi bo'lib bilib oling</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Email manzilingizni kiriting" required>
-                    <button type="submit">Obuna Bo'lish</button>
-                </form>
+            <div class="about-image">
+                <div class="placeholder-about"></div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
- {% endblock %}  
+<!-- Newsletter -->
+<section class="newsletter">
+    <div class="container">
+        <div class="newsletter-content">
+            <h2>Yangiliklardan Xabardor Bo'ling</h2>
+            <p>Eng so'nggi kolleksiyalar va maxsus takliflar haqida birinchi bo'lib bilib oling</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Email manzilingizni kiriting" required>
+                <button type="submit">Obuna Bo'lish</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+{% endblock %}

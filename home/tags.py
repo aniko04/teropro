@@ -1,5 +1,7 @@
 from django import template
+from django.db.models import Avg
 
+from home import models
 from home.models import Category, Like, Cart
 
 register = template.Library()
@@ -190,3 +192,15 @@ def reviews_count(product):
     """
     from .models import ProductView
     return ProductView.objects.filter(product=product).count()
+
+@register.filter
+def average_rating(product):
+    """
+    Mahsulotning o'rtacha reytingini hisoblaydi
+    """
+    from .models import ProductView
+    reviews = ProductView.objects.filter(product=product)
+    if reviews.exists():
+        avg = reviews.aggregate(Avg('rate'))['rate__avg']
+        return round(avg, 2)  # O'rtacha qiymatni 2 xonagacha yaxlitlash
+    return 0

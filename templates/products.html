@@ -100,12 +100,8 @@
                             <small class="cart-indicator">✓ Savatga tashlandi</small>
                         {% endif %}
                         <div class="product-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <span>{{ product.grade }}</span>
+                           {{ product|average_rating|star_rating_html|safe }}
+                        <span class="rating-count">({{ product|reviews_count }} baho)</span>
                         </div>
                         <div class="product-price">
                             <span class="current-price">${{ product.current_price|intspace }}</span>

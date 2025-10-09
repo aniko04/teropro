@@ -3,155 +3,245 @@
 
 {% block content %}
 <style>
-    .wishlist-container {
-        padding: 50px 0;
-        background-color: #f8f9fa;
+    .wishlist-page {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 80px 0;
+    }
+
+    .wishlist-header {
+        text-align: center;
+        margin-bottom: 60px;
     }
 
     .wishlist-title {
-        font-weight: 700;
-        color: #333;
-        font-family: 'Poppins', sans-serif;
+        font-size: 3rem;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 15px;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 
-    .product-card {
-        background: #fff;
-        border: none;
-        border-radius: 15px;
+    .wishlist-subtitle {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 300;
+    }
+
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+
+    @media (max-width: 992px) {
+        .products-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 576px) {
+        .products-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .wishlist-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
         overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         position: relative;
     }
 
-    .product-card:hover {
+    .wishlist-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
     }
 
-    .product-image {
+    .card-image-wrapper {
         position: relative;
+        height: 280px;
         overflow: hidden;
     }
 
-    .product-image img {
+    .card-image-wrapper img {
         width: 100%;
-        height: 300px;
+        height: 100%;
         object-fit: cover;
         transition: transform 0.4s ease;
     }
 
-    .product-card:hover .product-image img {
+    .wishlist-card:hover .card-image-wrapper img {
         transform: scale(1.1);
     }
 
-    .product-card .card-body {
-        padding: 25px;
-        text-align: center;
-    }
-
-    .product-card .card-title {
-        font-size: 1.2rem;
-        font-weight: 600;
-        margin-bottom: 10px;
-    }
-
-    .product-card .card-text {
-        color: #666;
-        font-size: 1.1rem;
-        font-weight: 500;
-    }
-
-    .product-actions {
+    .remove-btn {
         position: absolute;
         top: 15px;
         right: 15px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .product-actions .action-btn {
-        background-color: rgba(255, 255, 255, 0.9);
-        color: #333;
         width: 40px;
         height: 40px;
+        background: rgba(255, 255, 255, 0.9);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
+        color: #ff4757;
+        font-size: 18px;
+        transition: all 0.3s ease;
         text-decoration: none;
-        transition: background-color 0.3s, color 0.3s;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
     }
 
-    .product-actions .action-btn:hover {
-        background-color: #e83e8c;
-        color: #fff;
-    }
-
-    .btn-details {
-        background: linear-gradient(45deg, #e83e8c, #ff8c9a);
-        border: none;
+    .remove-btn:hover {
+        background: #ff4757;
         color: white;
-        padding: 10px 25px;
-        border-radius: 50px;
-        font-weight: 600;
-        transition: transform 0.2s, box-shadow 0.2s;
+        transform: scale(1.1);
     }
 
-    .btn-details:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 20px rgba(232, 62, 140, 0.3);
+    .card-content {
+        padding: 25px;
     }
 
-    .empty-wishlist {
-        padding: 80px 0;
-        text-align: center;
+    .product-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 12px;
+        line-height: 1.4;
     }
 
-    .empty-wishlist i {
-        font-size: 80px;
-        color: #e83e8c;
+    .product-price {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: #ff4757;
         margin-bottom: 20px;
     }
 
-    .empty-wishlist p {
-        font-size: 1.2rem;
-        color: #555;
+    .view-btn {
+        background: linear-gradient(45deg, #ff4757, #ff6b7a);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 50px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        width: 100%;
+        font-size: 0.9rem;
+    }
+
+    .view-btn:hover {
+        background: linear-gradient(45deg, #ff3742, #ff5722);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4);
+        color: white;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 100px 30px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 30px;
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .empty-icon {
+        font-size: 6rem;
+        color: rgba(255, 255, 255, 0.6);
         margin-bottom: 30px;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .empty-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 15px;
+    }
+
+    .empty-text {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 40px;
+        line-height: 1.6;
+    }
+
+    .shop-btn {
+        background: linear-gradient(45deg, #ff4757, #ff6b7a);
+        color: white;
+        padding: 15px 40px;
+        border-radius: 50px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(255, 71, 87, 0.3);
+    }
+
+    .shop-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(255, 71, 87, 0.4);
+        color: white;
+    }
+
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-20px);
+        }
     }
 </style>
 
-<div class="container wishlist-container">
-    
-<br><br>
-    <h2 class="text-center mb-5 wishlist-title">Mening Sevimli Mahsulotlarim</h2>
-    {% if liked_products %}
-    <div class="row">
-        {% for product in liked_products %}
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card product-card h-100">
-                <div class="product-image">
-                    <img src="{{ product.main_image.url }}" class="card-img-top" alt="{{ product.name }}">
-                    <div class="product-actions">
-                       <a href="{% url 'like_product' product.id  %}?path={{ request.path }}" class="action-btn"> <i class="fas fa-times"></i> </a>
-                    </div>
+<div class="wishlist-page">
+    <div class="container">
+        <div class="wishlist-header">
+            <h1 class="wishlist-title">♥ Sevimlilarim</h1>
+            <p class="wishlist-subtitle">Sizga yoqqan mahsulotlar ro'yxati</p>
+        </div>
+
+        {% if liked_products %}
+        <div class="products-grid">
+            {% for product in liked_products %}
+            <div class="wishlist-card">
+                <div class="card-image-wrapper">
+                    <img src="{{ product.main_image.url }}" alt="{{ product.name }}">
+                    <a href="{% url 'like_product' product.id %}?path={{ request.path }}" class="remove-btn"
+                        title="O'chirish">
+                        <i class="fas fa-times"></i>
+                    </a>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <p class="card-text mb-3">{{ product.current_price }} so'm</p>
-                    <a href="{% url 'product_details' product.id %}" class="btn btn-details">Batafsil</a>
+                <div class="card-content">
+                    <h3 class="product-title">{{ product.name }}</h3>
+                    <div class="product-price">{{ product.current_price }} so'm</div>
+                    <a href="{% url 'product_details' product.id %}" class="btn view-btn">Ko'rish</a>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        {% else %}
+        <div class="empty-state">
+            <div class="empty-icon">
+                <i class="far fa-heart"></i>
+            </div>
+            <h2 class="empty-title">Sevimlilar bo'sh</h2>
+            <p class="empty-text">Hali hech qanday mahsulot tanlamagansiz.<br>Do'konni ko'rib chiqing va yoqtirgan
+                narsalaringizni qo'shing!</p>
+            <a href="{% url 'product' %}" class="shop-btn">Do'konga o'tish</a>
+        </div>
+        {% endif %}
     </div>
-    {% else %}
-    <div class="empty-wishlist">
-        <i class="far fa-heart"></i>
-        <p>Sevimlilar ro'yxatingiz hozircha bo'sh.</p>
-        <a href="{% url 'product' %}" class="btn btn-details">Do'konga o'tish</a>
-    </div>
-    {% endif %}
 </div>
 {% endblock %}

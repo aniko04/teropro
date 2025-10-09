@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.db.models import Avg
 
 from .models import *
 
@@ -12,6 +13,15 @@ from .models import *
 def home(request):
     categories = Category.objects.all()
     products = Product.objects.filter(top=True)
+    # har bir category qaaysi narxdan boshlanadi
+    for category in categories:
+        category.min_price = Product.objects.filter(category=category).aggregate(Avg('current_price'))['current_price__avg']
+        if category.min_price is None:
+            category.min_price = 0
+        else:
+            category.min_price = int(category.min_price)
+        category.product_count = Product.objects.filter(category=category).count()
+        category.min_price = int(category.min_price)
     context = {
         'categories': categories,
         'products': products,
